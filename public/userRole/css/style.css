@@ -420,6 +420,7 @@ ol {
 
 .header__menu {
 	padding: 24px 0;
+	margin-top: 30px;
 }
 
 .header__menu ul li {
@@ -3418,6 +3419,11 @@ ol {
 	.over_hid {
 		overflow: hidden;
 	}
+}
+.logo_img
+{
+	width: 180px;
+	height: 115px;
 }
 
 /* Small Device = 320px */
