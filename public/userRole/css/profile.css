@@ -1,0 +1,25 @@
+.profile
+{
+    border: 2px solid brown;
+    padding: 20px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    background-color: rgb(128, 233, 236);
+    border-radius: 20px;
+}
+.profile h4{
+    text-decoration-line:underline;
+    margin-bottom: 10px;
+}
+.profile img{
+    height: 200px;
+    width: 200px;
+   border-radius: 50%;
+}
+
+.if_tittle
+{
+    margin-bottom: 15px;
+    font-weight: 700;
+    color: rgb(163, 33, 76);
+}

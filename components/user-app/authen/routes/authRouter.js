@@ -4,5 +4,6 @@ const authController = require('../controllers/authController')
 
 router.get('/login',authController.login);
 
+router.get('/profile', authController.profile);
 
 module.exports = router;
