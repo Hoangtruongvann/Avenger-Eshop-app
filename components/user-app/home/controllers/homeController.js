@@ -1,4 +1,4 @@
 
 exports.home = (req, res, next) => {
-	res.render('../components/user-app/home/views/homepage');
+	res.render('../components/user-app/home/views/homepage',{layout: 'userLayout.hbs'});
 }
