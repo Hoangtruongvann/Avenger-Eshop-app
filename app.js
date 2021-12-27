@@ -11,6 +11,8 @@ const cartRouter = require('./components/user-app/cart/routes/cartRouter');
 const authRouter = require('./components/user-app/authen/routes/authRouter');
 const dashboardRouter = require('./components/seller-app/dashboard/routes/dashboardRouter');
 const sellerAccountRouter = require('./components/seller-app/account/routes/accountRouter');
+const productAccountRouter = require('./components/seller-app/products/routes/productRouter');
+
 
 
 const app = express();
@@ -32,6 +34,7 @@ app.use('/cart',cartRouter);
 
 app.use('/seller',dashboardRouter);
 app.use('/seller/account',sellerAccountRouter);
+app.use('/seller/products',productAccountRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
