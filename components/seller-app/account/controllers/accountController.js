@@ -1,4 +1,4 @@
 
 exports.profile = (req,res,next) =>{
-    res.render('../components/seller-app/dashboard/views/dashboard',{layout: 'sellerLayout.hbs'});
+    res.render('../components/seller-app/account/views/profile',{layout: 'sellerLayout.hbs'});
 }

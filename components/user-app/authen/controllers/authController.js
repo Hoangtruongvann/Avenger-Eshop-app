@@ -1,8 +1,12 @@
+const userM = require('../../../../models/users')
 
-
-exports.login  =(req,res,next) =>
+exports.login  = async(req,res,next) =>
 {
-    res.render('../components/user-app/authen/views/login')
+    let users = await userM.findAll();
+    console.log(users);
+
+    
+    res.render('../components/user-app/authen/views/login', {layout:'userLayout'})
 }
 
 exports.profile  =(req,res,next) =>
