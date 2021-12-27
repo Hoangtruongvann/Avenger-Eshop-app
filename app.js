@@ -4,6 +4,9 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const expbs= require('express-handlebars');
+const session = require('express-session')
+const passport = require('passport');
+const flash = require('express-flash');
 // router set up
 const indexRouter = require('./components/user-app/home/routes/indexRouter');
 const productRouter = require('./components/user-app/product/routes/productRouter');
@@ -20,6 +23,23 @@ const app = express();
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
+
+app.use(flash());
+
+//session
+app.use(
+  session({
+      secret: 'secret',
+      resave: true,
+      saveUninitialized: true,
+  }),
+);
+
+//passport
+const initialize = require('./config/passport');
+initialize(passport);
+app.use(passport.initialize());
+app.use(passport.session());
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -51,17 +71,7 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
-//conect db
 
-// async function connect(){
-//   try {
-//     await sequelize.authenticate();
-//     console.log('Connection has been established successfully.');
-//   } catch (error) {
-//     console.error('Unable to connect to the database:', error);
-//   }
-// }
-// connect();
 
 
 module.exports = app;

@@ -15,7 +15,7 @@
 
 <div class="container" id="container">
 	<div class="form-container sign-up-container">
-		<form action="#" id="register-form" method="post">
+		<form action="/signup" id="register-form" method="post">
 			<h1>Tạo tài khoản</h1>
 			<div style="display:flex; justify-content:space-around; width:100%; align-items:center; ">
 				<input type="text" name="firstname" placeholder="Họ" style="flex: 1;"/>
@@ -36,7 +36,7 @@
 		</form>
 	</div>
 	<div class="form-container sign-in-container">
-		<form action="#">
+		<form action="/login" method="post">
 			<h1>Đăng nhập</h1>
 			<div class="social-container">
 				<a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
@@ -44,10 +44,10 @@
 				<a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
 			</div>
 			<span>hoặc sử dụng tài khoản</span>
-			<input type="email" placeholder="Email" />
-			<input type="password" placeholder="Mật khẩu" />
+			<input name="email" type="email" placeholder="Email" />
+			<input name="password" type="password" placeholder="Password" Mật khẩu />
 			<a href="#">Quên mật khẩu?</a>
-			<button>Đăng nhập </button>
+			<button type="submit">Đăng nhập </button>
 		</form>
 	</div>
 	<div class="overlay-container">

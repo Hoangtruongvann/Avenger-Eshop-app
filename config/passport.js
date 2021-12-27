@@ -1,17 +1,18 @@
 const LocalStrategy = require('passport-local').Strategy;
 const bcrypt = require('bcrypt');
-const User = require('../app/models/Authen');
+const User = require('../components/user-app/authen/services/users')
+const flash = require('express-flash');
 
 function initialize(passport) {
-    const authenticateUser = async (username, password, done) => {
-        const user = await User.one('username', username);
+    const authenticateUser = async (req, email, password, done) => {
+        const user = await User.findUserByEmail(email);
         if (user == null) {
-            return done(null, false, { message: 'No user with that username' });
+            return done(null, false, { message: 'No user with that email' });
         }
 
         try {
-            if (await bcrypt.compare(password, user.password)) {
-            // if (password == user.password) {
+            // if (await bcrypt.compare(password, user.password)) {
+            if (password == user.password) {
                 return done(null, user);
             } else {
                 return done(null, false, { message: 'Password incorrect' });
@@ -21,10 +22,14 @@ function initialize(passport) {
         }
     };
 
-    passport.use(new LocalStrategy(authenticateUser));
-    passport.serializeUser((user, done) => done(null, user._id));
+    passport.use(new LocalStrategy({
+        usernameField: 'email',
+        passwordField: 'password',
+        passReqToCallback: true
+      },authenticateUser));
+    passport.serializeUser((user, done) => done(null, user.user_id));
     passport.deserializeUser(async (_id, done) => {
-        let us = await User.one('_id', _id);
+        let us = await User.findUserById(_id);
         return done(null, us);
     });
 }
