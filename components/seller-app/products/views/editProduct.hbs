@@ -1,4 +1,4 @@
-<div class="header pb-6 d-flex align-items-center" style="min-height: 500px; ">
+<div class="header pb-6 d-flex align-items-center edit-form" style="min-height: 500px; ">
     <!-- Page content -->
     <div class="col-xl-12 order-xl-1">
         <div class="card">
@@ -10,7 +10,8 @@
                 </div>
             </div>
             <div class="card-body">
-                <form method="POST" action="/seller/products" id="add-product">
+            {{#with product}}
+                <form method="POST" action="/seller/products/update/{{product_id}}" id="add-product">
                     <h6 class="heading-small text-muted mb-4">Thông tin sản phẩm</h6>
                     <div class="pl-lg-4">
                         <div class="row">
@@ -18,105 +19,74 @@
                                 <div class="form-group">
                                     <label class="form-control-label" for="product_name">Tên sản phẩm</label>
                                     <input type="text" id="product_name" name="product_name" class="form-control"
-                                        placeholder="Tên sản phẩm" value="" required="">
+                                        placeholder="Tên sản phẩm" value="{{product_name}}" required="">
                                 </div>
                             </div>
                             <div class="col-lg-6">
                                 <div class="form-group">
                                     <label for="category" class="category">Chọn loại sản phẩm</label>
-                                    <select id="category" name="category" class="form-control">
-                                        <option value="volvo">Thời trang</option>
-                                        <option value="saab">Thực phẩm</option>
-                                        <option value="opel">Gia dụng</option>
-                                        <option value="audi">Điện tử</option>
-                                    </select>
+                                    <input type="text" id="category" name="category" class="form-control"
+                                        placeholder="Loại sản phẩm" value="{{'category.category_name'}}" required="">
                                 </div>
                             </div>
                             <div class="col-lg-6">
                                 <div class="form-group">
                                     <label class="form-control-label" for="product_price">Giá</label>
                                     <input type="text" id="product_price" name="product_price" class="form-control"
-                                        placeholder="Giá sản phẩm" value="" required="">
+                                        placeholder="Giá sản phẩm" value="{{price}}" required="">
                                 </div>
                             </div>
                             <div class="col-lg-6">
                                 <div class="form-group">
                                     <label for="brand" class="form-control-label">Chọn hãng sản phẩm</label>
-                                    <select id="brand" name="brand" class="form-control">
-                                        <option value="volvo">Volvo</option>
-                                        <option value="saab">Saab</option>
-                                        <option value="opel">Opel</option>
-                                        <option value="audi">Audi</option>
-                                    </select>
+                                   <input type="text" id="brand" name="brand" class="form-control"
+                                        placeholder="Hãng sản xuất" value="{{'brand.brand_name'}}" required="">
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label class="form-control-label" for="model_year">Năm sản xuất</label>
+                                    <input type="text" id="model_year" name="model_year" class="form-control"
+                                        placeholder="Năm sản xuất" value="{{model_year}}" required="">
                                 </div>
                             </div>
                             <div class="col-lg-6">
                                 <div class="form-group">
                                     <label class="form-control-label" for="product_quantity">Số lượng</label>
                                     <input type="text" id="product_quantity" name="product_quantity"
-                                        class="form-control" placeholder="Số lượng sản phẩm" value="" required="">
+                                        class="form-control" placeholder="Số lượng sản phẩm" value="{{quantity}}" required="">
                                 </div>
                             </div>
                         </div>
+                         {{/with}}
                         <hr class="my-4">
                         <!-- Description -->
                         <h6 class="heading-small text-muted mb-4">Hình ảnh</h6>
                         <div class="pl-lg-4">
                             <div class="row">
+                               {{#each images}}
                                 <div class="col-lg-4">
                                     <div class="form-group">
                                         <div class="file-field">
                                             <div class="z-depth-1-half mb-4">
-                                                <img src="https://mdbootstrap.com/img/Photos/Others/placeholder.jpg"
+                                                <img src="{{image_link}}"
                                                     class="img-fluid" alt="example placeholder">
                                             </div>
                                             <div class="d-flex justify-content-center">
                                                 <div class="btn btn-mdb-color btn-rounded float-left">
                                                     <label class="form-control-label" for="product_img1">Hình ảnh
-                                                        2</label>
-                                                    <input type="file" name="product_img1" id="product_img1">
+                                                        {{image_stt}}</label>
+                                                   <input type="file" id="myFile" style="display:none;" />
+                                                   <button class ="btn-primary" type="button" onclick="document.getElementById('myFile').click();">Browse</button>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="col-lg-4">
-                                    <div class="form-group">
-                                        <div class="file-field">
-                                            <div class="z-depth-1-half mb-4">
-                                                <img src="https://mdbootstrap.com/img/Photos/Others/placeholder.jpg"
-                                                    class="img-fluid" alt="example placeholder">
-                                            </div>
-                                            <div class="d-flex justify-content-center">
-                                                <div class="btn btn-mdb-color btn-rounded float-left">
-                                                    <label class="form-control-label" for="product_img2">Hình ảnh
-                                                        2</label>
-                                                    <input type="file" name="product_img2" id="product_img2">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4">
-                                    <div class="form-group">
-                                        <div class="file-field">
-                                            <div class="z-depth-1-half mb-4">
-                                                <img src="https://mdbootstrap.com/img/Photos/Others/placeholder.jpg"
-                                                    class="img-fluid" alt="example placeholder">
-                                            </div>
-                                            <div class="d-flex justify-content-center">
-                                                <div class="btn btn-mdb-color btn-rounded float-left">
-                                                    <label class="form-control-label" for="product_img3">Hình ảnh
-                                                        2</label>
-                                                    <input type="file" name="product_img3" id="product_img3">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
+                                </div>   
+                                {{/each}}  
                             </div>
                         </div>
+                        {{#with product}}
                         <hr class="my-4">
                         <!-- Description -->
                         <h6 class="heading-small text-muted mb-4">Mô tả</h6>
@@ -124,7 +94,7 @@
                             <div class="form-group">
                                 <label class="form-control-label">Mô tả sản phẩm</label>
                                 <textarea rows="4" class="form-control"
-                                    placeholder="Vài mô tả cho sản phẩm của bạn ..."></textarea>
+                                    placeholder="Vài mô tả cho sản phẩm của bạn ...">{{descriptions}}</textarea>
                             </div>
                              <span "text-right" style = "float: right;">
                                 <button class="btn btn-sm btn-primary" type="submit" value="submit"
@@ -135,9 +105,11 @@
                             </span>
                         </div>
                     </div>
+                    {{/with}}
             </div>
         </div>
         </form>
+       
     </div>
 </div>
 </div>

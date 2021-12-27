@@ -24,3 +24,15 @@
 {
     padding: 10px 20px 10px 20px;
 }
+
+.product-if img
+{
+    height: 55px;
+    width: 55px;
+}
+
+.edit-form input,.edit-form textarea
+{
+    color: rgb(177, 57, 21);
+    font-weight: 700;
+}

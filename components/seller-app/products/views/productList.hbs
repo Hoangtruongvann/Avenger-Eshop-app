@@ -1,3 +1,4 @@
+
 <div class="header bg-primary pb-6">
     <div class="container-fluid">
         <div class="header-body">
@@ -61,25 +62,26 @@
                         </div>
                     </div>
                    </div>
-                    <div class="row icon-examples product-">
-                        <div class="col-lg-12">
+                    <div class="row icon-examples product-if">
+                        {{#each products}}
+                            <div class="col-lg-12">
                             <button type="button" class="btn-icon-clipboard" data-clipboard-text="active-40"
-                                title="Chỉnh sửa sản phẩm" onclick="window.location.href='/seller/products/edit'">
+                                title="Chỉnh sửa sản phẩm" onclick="window.location.href='/seller/products/edit/{{product_id}}'">
                                 <div class ="row">
                                     <div class="col-1">
-                                        <i class="ni ni-active-40"></i>
+                                        <img src="{{'images.image_link'}}" alt="">
                                     </div>
                                     <div class="col-4">
-                                        <h5> Tên sản phẩm</h5>
+                                        <h5>{{product_name}}</h5>
                                     </div>
                                     <div class="col-2">
-                                        <h5> Hãng</h5>
+                                        <h5> {{'brand.brand_name'}}</h5>
                                     </div>
                                     <div class="col-2">
-                                        <h5>Loại</h5>
+                                        <h5>{{'category.category_name'}}</h5>
                                     </div>
                                     <div class="col-2">
-                                        <h5>Giá</h5>
+                                        <h5>{{price }}</h5>
                                     </div>
                                     <div class="col-1">
                                         <a href="#" class ="delete-btn"><i class="fas fa-trash"></i></a>
@@ -87,107 +89,7 @@
                                 </div>
                             </button>
                         </div>
-                       <div class="col-lg-12">
-                            <button type="button" class="btn-icon-clipboard" data-clipboard-text="active-40"
-                                title="Chỉnh sửa sản phẩm" onclick="window.location.href='/seller/products/edit'">
-                                <div class ="row">
-                                    <div class="col-1">
-                                        <i class="ni ni-active-40"></i>
-                                    </div>
-                                    <div class="col-4">
-                                        <h5> Tên sản phẩm</h5>
-                                    </div>
-                                    <div class="col-2">
-                                        <h5> Hãng</h5>
-                                    </div>
-                                    <div class="col-2">
-                                        <h5>Loại</h5>
-                                    </div>
-                                    <div class="col-2">
-                                        <h5>Giá</h5>
-                                    </div>
-                                    <div class="col-1">
-                                        <a href="#" class ="delete-btn"><i class="fas fa-trash"></i></a>
-                                    </div>
-                                </div>
-                            </button>
-                        </div>
-                        <div class="col-lg-12">
-                            <button type="button" class="btn-icon-clipboard" data-clipboard-text="active-40"
-                                title="Chỉnh sửa sản phẩm" onclick="window.location.href='/seller/products/edit'">
-                                <div class ="row">
-                                    <div class="col-1">
-                                        <i class="ni ni-active-40"></i>
-                                    </div>
-                                    <div class="col-4">
-                                        <h5> Tên sản phẩm</h5>
-                                    </div>
-                                    <div class="col-2">
-                                        <h5> Hãng</h5>
-                                    </div>
-                                    <div class="col-2">
-                                        <h5>Loại</h5>
-                                    </div>
-                                    <div class="col-2">
-                                        <h5>Giá</h5>
-                                    </div>
-                                    <div class="col-1">
-                                        <a href="#" class ="delete-btn"><i class="fas fa-trash"></i></a>
-                                    </div>
-                                </div>
-                            </button>
-                        </div>
-                        <div class="col-lg-12">
-                            <button type="button" class="btn-icon-clipboard" data-clipboard-text="active-40"
-                                title="Chỉnh sửa sản phẩm" onclick="window.location.href='/seller/products/edit'">
-                                <div class ="row">
-                                    <div class="col-1">
-                                        <i class="ni ni-active-40"></i>
-                                    </div>
-                                    <div class="col-4">
-                                        <h5> Tên sản phẩm</h5>
-                                    </div>
-                                    <div class="col-2">
-                                        <h5> Hãng</h5>
-                                    </div>
-                                    <div class="col-2">
-                                        <h5>Loại</h5>
-                                    </div>
-                                    <div class="col-2">
-                                        <h5>Giá</h5>
-                                    </div>
-                                    <div class="col-1">
-                                        <a href="#" class ="delete-btn"><i class="fas fa-trash"></i></a>
-                                    </div>
-                                </div>
-                            </button>
-                        </div>
-                        <div class="col-lg-12">
-                            <button type="button" class="btn-icon-clipboard" data-clipboard-text="active-40"
-                                title="Chỉnh sửa sản phẩm" onclick="window.location.href='/seller/products/edit'">
-                                <div class ="row">
-                                    <div class="col-1">
-                                        <i class="ni ni-active-40"></i>
-                                    </div>
-                                    <div class="col-4">
-                                        <h5> Tên sản phẩm</h5>
-                                    </div>
-                                    <div class="col-2">
-                                        <h5> Hãng</h5>
-                                    </div>
-                                    <div class="col-2">
-                                        <h5>Loại</h5>
-                                    </div>
-                                    <div class="col-2">
-                                        <h5>Giá</h5>
-                                    </div>
-                                    <div class="col-1">
-                                        <a href="#" class ="delete-btn"><i class="fas fa-trash"></i></a>
-                                    </div>
-                                </div>
-                            </button>
-                        </div>
-                        
+                        {{/each}}
                     </div>
                 </div>
             </div>
