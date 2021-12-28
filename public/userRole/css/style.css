@@ -671,6 +671,28 @@ ol {
 .search_result .text:hover{
 	background-color: #eee;
 }
+.search_result2{
+	position: absolute;
+	left: 15px;
+	top: 50px;
+	cursor: pointer;
+	background-color:white;
+	width:439px;
+	z-index: 10;
+}
+
+.search_result2 .text{
+	padding: 7px 10px;
+	border: solid 1px #ccc;
+
+}
+.search_result2  a{
+	text-decoration: none;
+	color:black;
+}
+.search_result2 .text:hover{
+	background-color: #eee;
+}
 
 .hero__search__form form .hero__search__categories {
 	width: 30%;

@@ -3,17 +3,19 @@ const router = express.Router();
 const authController = require('../controllers/authController')
 const passport = require('passport')
 const flash = require('express-flash');
+const authenAccount = require('../../../../middleware/authen')
 
-router.post('/signup', authController.signup)
+router.post('/signup', authenAccount.isNotloggedIn, authController.signup)
 
-router.post('/login', passport.authenticate('local', {
+router.post('/login', authenAccount.isNotloggedIn, passport.authenticate('local', {
     successRedirect: '/',
     failureRedirect: '/login',
     failureFlash: true,
 }), )
+router.post('/logout', authenAccount.isLoggedIn, authController.logout)
 
-router.get('/login', authController.login);
-router.get('/signup', authController.signupGet);
-router.get('/profile', authController.profile);
+router.get('/login', authenAccount.isNotloggedIn, authController.login);
+router.get('/signup', authenAccount.isNotloggedIn, authController.signupGet);
+router.get('/profile', authenAccount.isLoggedIn, authController.profile);
 
 module.exports = router;

@@ -133,8 +133,9 @@
                                         <span class="arrow_carrot-down"></span>
                                         <ul>
                                             <li><a href="/login">Đăng nhập</a></li>
-                                            <li><a href="/login">Đăng xuất</a></li>
+                                            
                                             <li><a href="/profile">Cá nhân</a></li>
+                                            <li><a id="logout-btn" href="#">Đăng xuất</a></li>
                                         </ul>
                                 </div>
                                 </a>
@@ -256,7 +257,7 @@
 
         <!-- Js Plugins -->
 
-
+    <form action="/logout" method="post" id="logout-form"></form>
 
         <script src="/userRole/js/jquery-3.3.1.min.js"></script>
         <script src="/userRole/js/bootstrap.min.js"></script>
