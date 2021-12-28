@@ -649,6 +649,29 @@ ol {
 	float: left;
 }
 
+.search_result{
+	position: absolute;
+	left: 240px;
+	top: 50px;
+	cursor: pointer;
+	background-color:white;
+	width:413px;
+	z-index: 10;
+}
+
+.search_result .text{
+	padding: 7px 10px;
+	border: solid 1px #ccc;
+
+}
+.search_result  a{
+	text-decoration: none;
+	color:black;
+}
+.search_result .text:hover{
+	background-color: #eee;
+}
+
 .hero__search__form form .hero__search__categories {
 	width: 30%;
 	float: left;

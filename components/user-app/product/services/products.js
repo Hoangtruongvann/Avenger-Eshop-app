@@ -25,6 +25,40 @@ exports.getAll = (page = 0,itemPerPage = 6) =>
         });
 }
 
+exports.getFull = () =>
+{
+    return models.products.findAll(
+        {
+            include : [{
+                model : models.images,
+                as : 'images',
+                where : {
+                    image_stt: 1
+                },
+            },{
+                model : models.categories,
+                as : 'category',
+            },
+            {
+            model: models.brands,
+            as:'brand'
+            }]
+            ,
+            raw : true
+        });
+}
+
+exports.getAllFetch = (page = 0,itemPerPage = 6) =>
+{
+    return models.products.findAll(
+        {
+            attributes: [
+                'product_id',
+                'product_name'
+              ]
+        });
+}
+
 exports.getOne = (id) =>
 {
     return models.products.findOne(
@@ -47,6 +81,8 @@ exports.getOne = (id) =>
             raw : true
         });
 }
+
+
 exports.getImagesProduct = (id) =>
 {
     return models.images.findAll({
