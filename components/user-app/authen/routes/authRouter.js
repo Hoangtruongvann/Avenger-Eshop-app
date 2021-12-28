@@ -10,10 +10,10 @@ router.post('/login', passport.authenticate('local', {
     successRedirect: '/',
     failureRedirect: '/login',
     failureFlash: true,
-}),)
+}), )
 
-router.get('/login',authController.login);
-
+router.get('/login', authController.login);
+router.get('/signup', authController.signupGet);
 router.get('/profile', authController.profile);
 
 module.exports = router;
