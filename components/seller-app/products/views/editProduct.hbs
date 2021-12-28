@@ -11,14 +11,15 @@
             </div>
             <div class="card-body">
             {{#with product}}
-                <form method="POST" action="/seller/products/update/{{product_id}}" id="add-product">
+                <form method="POST" action="/seller/products/update" id="add-product">
                     <h6 class="heading-small text-muted mb-4">Thông tin sản phẩm</h6>
+                    <input type="hidden" name = "id" value ={{product_id}}>
                     <div class="pl-lg-4">
                         <div class="row">
                             <div class="col-lg-6">
                                 <div class="form-group">
-                                    <label class="form-control-label" for="product_name">Tên sản phẩm</label>
-                                    <input type="text" id="product_name" name="product_name" class="form-control"
+                                    <label class="form-control-label" for="name">Tên sản phẩm</label>
+                                    <input type="text" id="name" name="name" class="form-control"
                                         placeholder="Tên sản phẩm" value="{{product_name}}" required="">
                                 </div>
                             </div>
@@ -31,8 +32,8 @@
                             </div>
                             <div class="col-lg-6">
                                 <div class="form-group">
-                                    <label class="form-control-label" for="product_price">Giá</label>
-                                    <input type="text" id="product_price" name="product_price" class="form-control"
+                                    <label class="form-control-label" for="price">Giá</label>
+                                    <input type="text" id="price" name="price" class="form-control"
                                         placeholder="Giá sản phẩm" value="{{price}}" required="">
                                 </div>
                             </div>
@@ -52,8 +53,8 @@
                             </div>
                             <div class="col-lg-6">
                                 <div class="form-group">
-                                    <label class="form-control-label" for="product_quantity">Số lượng</label>
-                                    <input type="text" id="product_quantity" name="product_quantity"
+                                    <label class="form-control-label" for="quantity">Số lượng</label>
+                                    <input type="text" id="quantity" name="quantity"
                                         class="form-control" placeholder="Số lượng sản phẩm" value="{{quantity}}" required="">
                                 </div>
                             </div>
@@ -101,7 +102,7 @@
                                     style="font-size: 18px;" form="add-product">Xác nhận</button>
                             </span>
                              <span "text-right" style = "float:right; margin-right: 10px;">
-                                <a class="btn btn-sm btn-warning" style="font-size: 18px;" form="add-product">Quay lại</a>
+                                <a class="btn btn-sm btn-warning" style="font-size: 18px;"  href ="/seller/products">Quay lại</a>
                             </span>
                         </div>
                     </div>

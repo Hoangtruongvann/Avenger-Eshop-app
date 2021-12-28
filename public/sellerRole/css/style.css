@@ -7,18 +7,16 @@
 .delete-btn i
 {
     font-size: 20px;
+    display: inline;
+    float: left;
+
 }
 
-.delete-btn i:hover
+.p-btn i:hover
 {
-    font-size: 22px;
     color: red;
 }
 
-.delete-btn i:active
-{
-    font-size: 18px;
-}
 
 .btn-primary, .btn-warning
 {
@@ -36,3 +34,54 @@
     color: rgb(177, 57, 21);
     font-weight: 700;
 }
+
+.modal-1 li:first-child a {
+    -moz-border-radius: 6px 0 0 6px;
+    -webkit-border-radius: 6px;
+    border-radius: 6px 0 0 6px;
+  }
+  .modal-1 li:last-child a {
+    -moz-border-radius: 0 6px 6px 0;
+    -webkit-border-radius: 0;
+    border-radius: 0 6px 6px 0;
+  }
+  .modal-1 a {
+    border-color: #ddd;
+    color: #4285F4;
+    background: rgb(22, 124, 124);
+  }
+  .modal-1 a:hover {
+    background: #eee;
+  }
+  .modal-1 a.active, .modal-1 a:active {
+    border-color: #4285F4;
+    background: #4285F4;
+    color: #fff;
+  }
+  .pagination {
+    list-style: none;
+    display: inline-block;
+    padding: 0;
+    margin-top: 10px;
+  }
+  .pagination li {
+    display: inline;
+    text-align: center;
+  }
+  .pagination a {
+    float: left;
+    display: block;
+    font-size: 14px;
+    text-decoration: none;
+    padding: 5px 12px;
+    color: rgb(19, 18, 18);
+    margin-left: -1px;
+    border: 1px solid transparent;
+    line-height: 1.5;
+  }
+  .pagination a.active {
+    cursor: default;
+  }
+  .pagination a:active {
+    outline: none;
+  }
