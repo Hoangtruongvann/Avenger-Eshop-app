@@ -1,3 +1,4 @@
+
 <div class="header pb-6 d-flex align-items-center" style="min-height: 500px; background-image: url(/sellerRole/img/theme/profile-cover.jpg); background-size: cover; background-position: center top;">
       <!-- Mask -->
       <span class="mask bg-gradient-default opacity-8"></span>
@@ -5,8 +6,8 @@
       <div class="container-fluid d-flex align-items-center">
         <div class="row">
           <div class="col-lg-7 col-md-10">
-            <h1 class="display-2 text-white">Hello Jesse</h1>
-            <p class="text-white mt-0 mb-5">This is your profile page. You can see the progress you've made with your work and manage your projects or assigned tasks</p>
+            <h1 class="display-2 text-white">Hello {{user.lastname}}</h1>
+            <p class="text-white mt-0 mb-5">Đây là trang hồ sơ của bạn. Bạn có thể xem thông tin của bạn và thông tin cửa hàng của mình và thay đổi các thông tin cá nhân.</p>
             <a href="#" class="btn btn-neutral">Chỉnh sửa tài khoản</a>
              <a href="#" class="btn btn-neutral">Chỉnh sửa cửa hàng</a>
           </div>
@@ -53,23 +54,25 @@
                   </div>
                 </div>
               </div>
+              {{#with shop}}
               <div class="text-center">
                 <h5 class="h3">
-                  Your Phone<span class="font-weight-light"></span>
+                  {{shop_name}}<span class="font-weight-light"></span>
                 </h5>
                 <div class="h5 font-weight-300">
-                  <i class="ni location_pin mr-2"></i>công ty chuyên bán điện thoại với giá siêu rẻ
+                  <i class="ni location_pin mr-2"></i>{{descriptions}}
                 </div>
                 <div class="h5 mt-4">
-                  <i class="ni business_briefcase-24 mr-2"></i>345 Trần Phú
+                  <i class="ni business_briefcase-24 mr-2"></i>{{address}}
                 </div>
                 <div>
-                  <i class="ni education_hat mr-2"></i>University of Science
+                  <i class="ni education_hat mr-2"></i>{{shop_email}}
                 </div>
               </div>
             </div>
           </div>
         </div>
+        {{/with}}
         <div class="col-xl-8 order-xl-1">
           <div class="card">
             <div class="card-header">
@@ -83,55 +86,51 @@
               </div>
             </div>
             <div class="card-body">
-              <form>
+              <form  class ="edit-form" id="edit-profile">
                 <h4 style="color:blue" >Thông tin tài khoản</h4>
                 <div class="pl-lg-4">
                   <div class="row">
                     <div class="col-lg-6">
                       <div class="form-group">
                         <label class="form-control-label" for="input-first-name">Họ</label>
-                        <input type="text" id="input-first-name" class="form-control" placeholder="Họ của bạn" value="">
+                        <input type="text" id="input-first-name" class="form-control" placeholder="Họ của bạn" value="{{user.firstname}}">
                       </div>
                     </div>
                     <div class="col-lg-6">
                       <div class="form-group">
                         <label class="form-control-label" for="input-last-name">Tên</label>
-                        <input type="text" id="input-last-name" class="form-control" placeholder="Tên của bạn" value="">
+                        <input type="text" id="input-last-name" class="form-control" placeholder="Tên của bạn" value="{{user.lastname}}">
                       </div>
                     </div>
                   </div>
                   <div class="row">
-                    <div class="col-lg-6">
-                      <div class="form-group">
-                        <label class="form-control-label" for="input-username">Tên tài khoản</label>
-                        <input type="text" id="input-username" class="form-control" placeholder="Tên tài khoản" value="">
-                      </div>
-                    </div>
                     <div class="col-lg-6">
                       <div class="form-group">
                         <label class="form-control-label" for="input-email">Địa chỉ Email</label>
-                        <input type="email" id="input-email" class="form-control" placeholder="Địa chỉ email của bạn">
+                        <input type="email" id="input-email" class="form-control" placeholder="Địa chỉ email của bạn" value="{{user.email}}">
                       </div>
                     </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-lg-6">
+                      <div class="col-lg-6">
                       <div class="form-group">
                         <label class="form-control-label" for="input-username">Số điện thoại</label>
-                        <input type="text" id="input-phone" class="form-control" placeholder="Số điện thoại của bạn" value="">
+                        <input type="text" id="input-phone" class="form-control" placeholder="Số điện thoại của bạn" value="{{user.phone}}">
                       </div>
                     </div>
                   </div>
+                  
+                  
+                  
                   <div class="row">
                     <div class="col-lg-12">
                       <div class="form-group">
                         <label class="form-control-label" for="input-last-name">Địa chỉ</label>
-                        <input type="text" id="input-address" class="form-control" placeholder="Địa chỉ của bạn" value="">
+                        <input type="text" id="input-address" class="form-control" placeholder="Địa chỉ của bạn" value="{{user.address}}">
                       </div>
                     </div>
                   </div>
                 </div>
                 <hr class="my-4" />
+                {{#with shop}}
                 <!-- Shop -->
                 <h4 style="color:blue"  >Thông tin cửa hàng</h4>
                 <div class="pl-lg-4">
@@ -139,7 +138,7 @@
                     <div class="col-lg-12">
                       <div class="form-group">
                         <label class="form-control-label" for="input-username">Tên cửa hàng</label>
-                        <input type="text" id="input-shop-name" class="form-control" placeholder="Tên cửa hàng" value="Your phone">
+                        <input type="text" id="input-shop-name" class="form-control" placeholder="Tên cửa hàng" value="{{shop_name}}">
                       </div>
                     </div>
                   </div>
@@ -147,13 +146,13 @@
                     <div class="col-lg-6">
                       <div class="form-group">
                         <label class="form-control-label" for="input-username">Số điện thoại</label>
-                        <input type="text" id="input-shop-phone" class="form-control" placeholder="Tên cửa hàng" value="Số điện thoại">
+                        <input type="text" id="input-shop-phone" class="form-control" placeholder="Tên cửa hàng" value="{{shop_phone}}">
                       </div>
                     </div>
                     <div class="col-lg-6">
                       <div class="form-group">
                         <label class="form-control-label" for="input-username">Email</label>
-                        <input type="email" id="input-shop-email" class="form-control" placeholder="Tên cửa hàng" value="Email">
+                        <input type="email" id="input-shop-email" class="form-control" placeholder="Tên cửa hàng" value="{{shop_email}}">
                       </div>
                     </div>
                   </div>
@@ -161,7 +160,7 @@
                     <div class="col-lg-12">
                       <div class="form-group">
                         <label class="form-control-label" for="input-first-name">Địa chỉ</label>
-                        <input type="text" id="input-shop-address" class="form-control" placeholder="Địa chỉ cửa hàng" value="">
+                        <input type="text" id="input-shop-address" class="form-control" placeholder="Địa chỉ cửa hàng" value="{{address}}">
                       </div>
                     </div>
                   </div>
@@ -171,12 +170,21 @@
                 <div class="pl-lg-4">
                   <div class="form-group">
                     <label class="form-control-label">Mô tả cửa hàng</label>
-                    <textarea rows="4" class="form-control" placeholder="Vài mô tả cho cửa hàng của bạn ..."></textarea>
+                    <textarea rows="4" class="form-control" placeholder="Vài mô tả cho cửa hàng của bạn ...">{{descriptions}}</textarea>
                   </div>
-                  
+                    {{/with}}
                 </div>
+            
+               <span "text-right" style = "float: right;">
+                                <button class="btn btn-sm btn-primary" type="submit" value="submit"
+                                    style="font-size: 18px;"  form="edit-profile">Xác nhận</button>
+                            </span>
+                             <span "text-right" style = "float:right; margin-right: 10px;">
+                                <a class="btn btn-sm btn-warning" style="font-size: 18px;" href ="/seller">Quay lại</a>
+              </span>
               </form>
             </div>
           </div>
         </div>
       </div>
+   
