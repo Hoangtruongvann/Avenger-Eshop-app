@@ -144,7 +144,9 @@
             <div class="humberger__menu__cart">
                 <ul>
                     
-                    <li><a href="#"><i class="fa fa-shopping-bag"></i> <span>3</span></a></li>
+                    <li><a href="#"><i class="fa fa-shopping-bag"></i> <span>{{#if cartQuantity}}
+                        {{cartQuantity.product_quantity}}
+                    {{/if}}</span></a></li>
                 </ul>
                 <div class="header__cart__price">Hóa đơn: <span>0.00 VNĐ</span></div>
             </div>
@@ -269,7 +271,9 @@
                         <div class="header__cart">
                             <ul>
                                 
-                                <li><a href="/cart"><i class="fa fa-shopping-bag"></i> <span>3</span></a></li>
+                                <li><a href="/cart"><i class="fa fa-shopping-bag"></i> {{#if cartQuantity}}
+                        <span>{{cartQuantity.product_quantity}}</span>
+                    {{/if}}</a></li>
                             </ul>
                             <div class="header__cart__price">Hóa đơn: <span>0.00 VNĐ</span></div>
                         </div>

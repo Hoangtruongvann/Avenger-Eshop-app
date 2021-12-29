@@ -54,12 +54,12 @@
                                     <input type="text" value="1">
                                 </div>
                             </div>
-                        </div>
-                        <a href="#" class="primary-btn">Thêm vào giỏ hàng</a>
+                        </div> 
+                        <a href="#" data-id="{{product.product_id}}" class="primary-btn addToCart">Thêm vào giỏ hàng</a>
                         <a href="#" class="heart-icon"><span class="icon_heart_alt"></span></a>
                         <ul>
                             <li><b>Hãng</b> <span>{{product.[brand.brand_name]}}</span></li>
-                            <li><b>Khả dụng</b> 
+                            <li><b>Khả dụng</b>
                             {{#if product.isAvailable}}
                             <span>còn hàng</span></li>
                             {{else}}

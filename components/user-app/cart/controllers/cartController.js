@@ -23,8 +23,12 @@ exports.cart = async (req,res,next) =>
         value.image_link = value['images.image_link']
     });
 
+    let total = 0;
+    for(let i = 0; i < products.length; i++) {
+        total += products[i].quantity * products[i].price;
+    }
 
-    res.render('../components/user-app/cart/views/cart', {layout:'userLayout', products: products});
+    res.render('../components/user-app/cart/views/cart', {layout:'userLayout', products: products, total:total});
 }
 
 exports.add = async (req,res,next) =>  {
@@ -51,4 +55,12 @@ exports.remove = async (req, res, next) => {
     let response = await cartM.remove(req.params.id);
     
     res.redirect('back');
+}
+
+exports.update = async (req, res, next) => {
+    let cart = await cartM.getOneByUSId(req.user.user_id);
+    for (let i = 0; i < cart.length; i++) {
+        let response = await cartM.update(req.user.user_id, cart[i].product_id, req.body.quantity[i])
+    }
+    return res.redirect('back')
 }

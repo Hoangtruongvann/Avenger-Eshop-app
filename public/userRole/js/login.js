@@ -77,6 +77,11 @@ $('.addToCart').on('click', async function(e) {
 	}
 })
 
+$('#update-btn').on('click',async function(e){
+	e.preventDefault();
+	$('#update-form').submit();
+})
+
 document.addEventListener('DOMContentLoaded', ()=>{
 	$(document).ready(function(){
 
@@ -93,3 +98,5 @@ document.addEventListener('DOMContentLoaded', ()=>{
 	  })
 
 	})});
+
+
