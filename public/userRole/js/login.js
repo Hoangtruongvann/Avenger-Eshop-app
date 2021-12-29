@@ -38,13 +38,16 @@ $('#register-btn').on('click',e=>{
 	e.preventDefault();
 
 	if($('#pass1').val() !== $('#pass2').val()){
-		$('.toast').toast({delay:5000})
-		$('.toast').toast('show')
+		$('.toast#f1').toast({delay:1100})
+		$('.toast#f1').toast('show')
 	}
 	else{
 		$('#register-form').submit();
 	}
 })
+
+$('.toast.instant').toast({delay:1100})
+$('.toast.instant').toast('show')
 
 // $('#logout-btn').click(function(e) {
 // 	e.preventDefault();
@@ -56,4 +59,37 @@ $('#logout-btn').on('click', function(e) {
 	$('#logout-form').submit();
 })
 
+$('.addToCart').on('click', async function(e) {
+	e.preventDefault();
+	let id = $(this).data('id');
+	let res = await fetch(`/cart/add?id=${id}`)
+	res = await res.json();
+	if (res.result == 'ok'){
 
+		$('.toast#s1').toast({delay:1100})
+		$('.toast#s1').toast('show')
+	}else if(res.result == 'redirect'){
+		$(location).prop('href', '/login')
+	}
+	else{
+		$('.toast#f2').toast({delay:1100})
+		$('.toast#f2').toast('show')
+	}
+})
+
+document.addEventListener('DOMContentLoaded', ()=>{
+	$(document).ready(function(){
+
+	  $('#delete-form').on('show.bs.modal', function (event) {
+		var button = $(event.relatedTarget)
+		var _id = button.data('id')
+		$('#deleteForm').attr('action',`/cart/remove/${_id}`);
+
+
+	  })
+
+	  $('#delete-confirm').on('click', ()=>{
+		$('#deleteForm').submit();
+	  })
+
+	})});

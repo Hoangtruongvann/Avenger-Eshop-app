@@ -62,7 +62,7 @@ app.use(function(req, res, next) {
 app.use('/', indexRouter);
 app.use('/', authRouter);
 app.use('/products', productRouter);
-app.use('/cart', authenAccount.isLoggedIn ,authenRole.isCustomer,cartRouter);
+app.use('/cart',cartRouter);
 
 app.use('/seller', authenAccount.isLoggedIn , authenRole.isSeller,dashboardRouter);
 app.use('/seller/account', authenAccount.isLoggedIn , authenRole.isSeller,sellerAccountRouter);

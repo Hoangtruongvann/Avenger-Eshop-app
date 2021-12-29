@@ -33,29 +33,32 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td class="shoping__cart__item">
-                                        <img src="/userRole/img/cart/cart-1.jpg" alt="">
-                                        <h5>Vegetable’s Package</h5>
-                                    </td>
-                                    <td class="shoping__cart__price">
-                                        $55.00
-                                    </td>
-                                    <td class="shoping__cart__quantity">
-                                        <div class="quantity">
-                                            <div class="pro-qty">
-                                                <input type="text" value="1">
+                                {{#each products}}
+                                    <tr>
+                                        <td class="shoping__cart__item">
+                                            <img src="{{image_link}}" alt="" width="100px" height="100px">
+                                            <h5>{{product_name}}</h5>
+                                        </td>
+                                        <td class="shoping__cart__price">
+                                            {{price}}
+                                        </td>
+                                        <td class="shoping__cart__quantity">
+                                            <div class="quantity">
+                                                <div class="pro-qty">
+                                                    <input type="text" value="{{quantity}}">
+                                                </div>
                                             </div>
-                                        </div>
-                                    </td>
-                                    <td class="shoping__cart__total">
-                                        $110.00
-                                    </td>
-                                    <td class="shoping__cart__item__close">
-                                        <span class="icon_close"></span>
-                                    </td>
-                                </tr>
-                                <tr>
+                                        </td>
+                                        <td class="shoping__cart__total">
+                                            {{total}}
+                                        </td>
+                                        <td class="shoping__cart__item__close">
+                                            <span class="icon_close" data-id="{{product_id}}"  data-toggle="modal" data-target="#delete-form"></span> 
+                                        </td>
+                                    </tr>
+                                {{/each}}
+                                
+                                {{!-- <tr>
                                     <td class="shoping__cart__item">
                                         <img src="/userRole/img/cart/cart-2.jpg" alt="">
                                         <h5>Fresh Garden Vegetable</h5>
@@ -67,7 +70,7 @@
                                         <div class="quantity">
                                             <div class="pro-qty">
                                                 <input type="text" value="1">
-                                            </div>
+                                            </div>  
                                         </div>
                                     </td>
                                     <td class="shoping__cart__total">
@@ -98,7 +101,7 @@
                                     <td class="shoping__cart__item__close">
                                         <span class="icon_close"></span>
                                     </td>
-                                </tr>
+                                </tr> --}}
                             </tbody>
                         </table>
                     </div>
@@ -137,3 +140,26 @@
         </div>
     </section>
     <!-- Shoping Cart Section End -->
+
+
+    <div class="modal fade" id = "delete-form" tabindex="-1" role="dialog">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Xóa khỏi giỏ hàng</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <p>Bạn có chắc chắn xóa sản phẩm khỏi giỏ hàng không?</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger" id="delete-confirm">Remove</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <form action="#" method="post" id="deleteForm"></form>

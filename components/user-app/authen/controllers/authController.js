@@ -13,7 +13,10 @@ exports.profile = (req, res, next) => {
 exports.signup = async(req, res, next) => {
     const us = await userM.findUserByEmail(req.body.email);
     if (us){
-        return res.render('../components/user-app/authen/views/signup', {layout:'userLayout', false:'Email already exists'})
+        let toast ={};
+        toast.content = 'Email already exists';
+        
+        return res.render('../components/user-app/authen/views/signup', {layout:'userLayout', toast:toast})
     }
     req.body.password = await bcrypt.hash(req.body.password, 10);
     const response = await userM.addUser(req.body);
