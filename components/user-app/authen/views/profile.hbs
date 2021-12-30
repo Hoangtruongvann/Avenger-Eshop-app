@@ -1,7 +1,7 @@
     <div class="container profile">
         <div class="row">
         <div class="col-4">
-            <img src="/userRole/img/avatar.jfif" alt="">
+            <img src= {{infoUser.avatar}} alt="">
         </div>
         <div class="col-8">
             <h4>Thông tin cá nhân</h4>
@@ -10,7 +10,7 @@
                 Tên tài khoản: 
                 </div>
                 <div class="col-8 if">
-                Nguyễn Văn A
+                {{infoUser.lastname}} {{infoUser.firstname}}
                 </div>
             </div>
             <div class="row">
@@ -18,7 +18,7 @@
                 Địa chỉ: 
                 </div>
                 <div class="col-8 if">
-                    Tp. Hồ Chí Minh
+                    {{infoUser.address}}
                 </div>
             </div>
             <div class="row">
@@ -26,7 +26,7 @@
                 Số điện thoại:
                 </div>
                 <div class="col-8 if">
-                08690060666
+                {{infoUser.phone}}
                 </div>
             </div>
             <div class="row">
@@ -34,7 +34,7 @@
                     Email: 
                 </div>
                 <div class="col-8 if">
-                    Avenger@gmail.com
+                    {{infoUser.email}}
                 </div>
             </div>
             <div class="row">

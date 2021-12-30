@@ -6,8 +6,9 @@ exports.login = async(req, res, next) => {
     res.render('../components/user-app/authen/views/login', { layout: 'userLayout' })
 }
 
-exports.profile = (req, res, next) => {
-    res.render('../components/user-app/authen/views/profile')
+exports.profile = async (req, res, next) => {
+    const infoUser = await userM.findUserById(req.user.user_id);
+    res.render('../components/user-app/authen/views/profile', { layout: 'userLayout', infoUser:infoUser })
 }
 
 exports.signup = async(req, res, next) => {
