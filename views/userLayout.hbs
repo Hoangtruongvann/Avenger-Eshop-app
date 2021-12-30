@@ -226,7 +226,7 @@
                                 </div>
                                 <div class="header__top__right__auth header__top__right__language">
                                     {{#if user}}
-                                        <a href="/login"><i class="fa fa-user"></i>{{user.lastname}}
+                                        <a href="/login"><i class="fa fa-user"></i>{{user.firstname}}
                                     {{else}}
                                         <a href="/login"><i class="fa fa-user"></i>Tài khoản
                                     {{/if}}
@@ -365,7 +365,7 @@
 
         <!-- Js Plugins -->
 
-    <form action="/logout" method="post" id="logout-form"></form>
+    <form action="/logout?_method=DELETE" method="post" id="logout-form"></form>
 
         <script src="/userRole/js/jquery-3.3.1.min.js"></script>
         <script src="/userRole/js/bootstrap.min.js"></script>

@@ -7,7 +7,7 @@ const expbs= require('express-handlebars');
 const session = require('express-session')
 const passport = require('passport');
 const flash = require('express-flash');
-// const methodOverride = require('method-override');
+const methodOverride = require('method-override');
 // router set up
 const indexRouter = require('./components/user-app/home/routes/indexRouter');
 const productRouter = require('./components/user-app/product/routes/productRouter');
@@ -36,7 +36,7 @@ app.use(
   }),
 );
 // override with the X-HTTP-Method-Override header in the request
-// app.use(methodOverride('_method'));
+app.use(methodOverride('_method'));
 
 //passport
 const initialize = require('./config/passport');

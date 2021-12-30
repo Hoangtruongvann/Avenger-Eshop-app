@@ -12,7 +12,7 @@ router.post('/login', authenAccount.isNotloggedIn, passport.authenticate('local'
     failureRedirect: '/login',
     failureFlash: true,
 }), )
-router.post('/logout', authenAccount.isLoggedIn, authController.logout)
+router.delete('/logout', authenAccount.isLoggedIn, authController.logout)
 
 router.get('/login', authenAccount.isNotloggedIn, authController.login);
 router.get('/signup', authenAccount.isNotloggedIn, authController.signupGet);
