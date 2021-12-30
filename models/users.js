@@ -55,6 +55,10 @@ module.exports = function(sequelize, DataTypes) {
         model: 'shops',
         key: 'shop_id'
       }
+    },
+    avatar: {
+      type: DataTypes.TEXT,
+      allowNull: true
     }
   }, {
     sequelize,
