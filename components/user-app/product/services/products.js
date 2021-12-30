@@ -1,3 +1,4 @@
+const async = require('hbs/lib/async');
 const {models} = require('../../../../models');
 
 
@@ -94,6 +95,15 @@ exports.getOneImageProduct = (id) =>
 {
     return models.images.findOne({
         where:{product_id:id},
+        raw:true
+    })
+}
+
+exports.getShop = async (id) => 
+{
+    const product = await this.getOne(id);
+    return models.shops.findOne({
+        where:{shop_id: product.shop_id},
         raw:true
     })
 }

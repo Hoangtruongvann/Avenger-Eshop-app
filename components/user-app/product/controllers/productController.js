@@ -21,7 +21,8 @@ exports.detail = async (req, res, next) => {
             product.isAvailable = true;
     }
     let images = await productM.getImagesProduct(req.params.product_id);
-    res.render('../components/user-app/product/views/productDetail', { layout: 'userLayout', product: product, images: images })
+    let shop = await productM.getShop(req.params.product_id);
+    res.render('../components/user-app/product/views/productDetail', { layout: 'userLayout', product: product, images: images, shop: shop })
 }
 
 exports.fetching = async function (req, res, next){
