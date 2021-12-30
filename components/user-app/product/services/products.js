@@ -1,6 +1,6 @@
 const async = require('hbs/lib/async');
 const {models} = require('../../../../models');
-
+const { Op } = require("sequelize");
 
 exports.getAll = (page = 0,itemPerPage = 6) =>
 {
@@ -105,5 +105,25 @@ exports.getShop = async (id) =>
     return models.shops.findOne({
         where:{shop_id: product.shop_id},
         raw:true
+    })
+}
+
+exports.getRelatedProducts = async (product_id, category_id) => 
+{
+    return models.products.findAll({
+        include : [{
+            model : models.images,
+            as : 'images',
+            where : {
+                image_stt: 1
+            },
+        }],
+        where:{
+            category_id: category_id,   
+            product_id: {
+                [Op.ne]: product_id
+            }
+        },
+        raw: true
     })
 }

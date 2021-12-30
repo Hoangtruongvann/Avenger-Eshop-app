@@ -22,7 +22,11 @@ exports.detail = async (req, res, next) => {
     }
     let images = await productM.getImagesProduct(req.params.product_id);
     let shop = await productM.getShop(req.params.product_id);
-    res.render('../components/user-app/product/views/productDetail', { layout: 'userLayout', product: product, images: images, shop: shop })
+    let relatedProducts = await productM.getRelatedProducts(product.product_id, product.category_id); 
+    if (relatedProducts.length > 4) {
+        relatedProducts = relatedProducts.slice(0, 5);
+    } 
+    res.render('../components/user-app/product/views/productDetail', { layout: 'userLayout', product: product, images: images, shop: shop, relatedProducts })
 }
 
 exports.fetching = async function (req, res, next){
