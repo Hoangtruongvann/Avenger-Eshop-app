@@ -37,6 +37,100 @@
         <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
         <!-- Page Preloder -->
+    {{#if messages.error}}
+        <div class="toast instant" role="alert" aria-live="assertive" aria-atomic="true"
+            style="position:fixed; right:10px; top:120px; z-index:1 ;min-width:250px">
+            <div class="toast-header">
+
+                <img src="https://image.similarpng.com/very-thumbnail/2020/09/Red-wrong-mark-icon-vector-PNG.png" width="20px"
+                class="rounded mr-2" alt="...">
+                <strong class="mr-auto">Lỗi</strong>
+                <small>just now</small>
+                {{!-- <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button> --}}
+            </div>
+            <div class="toast-body">
+                {{messages.error}}
+            </div>
+        </div>         
+    {{/if}}
+
+    <div class="toast" id="f1" role="alert" aria-live="assertive" aria-atomic="true"
+        style="position:fixed; right:10px; top:120px; z-index:1">
+        <div class="toast-header">
+            <img src="https://image.similarpng.com/very-thumbnail/2020/09/Red-wrong-mark-icon-vector-PNG.png" width="20px"
+                class="rounded mr-2" alt="...">
+            <strong class="mr-auto">Lỗi</strong>
+            <small>just now</small>
+            {{!-- <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button> --}}
+        </div>
+        <div class="toast-body">
+            Mật khẩu nhập lại không trùng khớp
+        </div>
+    </div>
+    <div class="toast" id="f2" role="alert" aria-live="assertive" aria-atomic="true"
+        style="position:fixed; right:10px; top:120px; z-index:1">
+        <div class="toast-header">
+            <img src="https://image.similarpng.com/very-thumbnail/2020/09/Red-wrong-mark-icon-vector-PNG.png" width="20px"
+                class="rounded mr-2" alt="...">
+            <strong class="mr-auto">Lỗi</strong>
+            <small>just now</small>
+            {{!-- <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button> --}}
+        </div>
+        <div class="toast-body">
+            Sản phẩm đã tồn tại trong giỏ hàng
+        </div>
+    </div>
+    <div class="toast" id="s1" role="alert" aria-live="assertive" aria-atomic="true"
+        style="position:fixed; right:10px; top:120px; z-index:1">
+        <div class="toast-header">
+            <img src="https://flyclipart.com/thumb2/verify-success-success-tick-icon-with-png-and-vector-format-372259.png" width="20px"
+                class="rounded mr-2" alt="...">
+            <strong class="mr-auto">Thành công</strong>
+            <small>just now</small>
+            {{!-- <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button> --}}
+        </div>
+        <div class="toast-body">
+            Đã thêm sản phẩm vào giỏ hàng
+        </div>
+    </div>
+    
+    {{#if toast}}
+            <div class="toast instant" role="alert" aria-live="assertive" aria-atomic="true"
+                style="position:fixed; right:10px; top:120px; z-index:1; min-width:250px">
+                <div class="toast-header">
+                    {{#if toast.ok}}
+                        <img src="https://flyclipart.com/thumb2/verify-success-success-tick-icon-with-png-and-vector-format-372259.png" width="20px"
+                        class="rounded mr-2" alt="...">
+                         <strong class="mr-auto">Thành công</strong>
+
+                    {{else}}
+                        <img src="https://image.similarpng.com/very-thumbnail/2020/09/Red-wrong-mark-icon-vector-PNG.png" width="20px"
+                        class="rounded mr-2" alt="...">
+                        <strong class="mr-auto">Lỗi</strong>
+
+                    {{/if}}
+
+                   
+                    
+                    <small>just now</small>
+                    {{!-- <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button> --}}
+                </div>
+                <div class="toast-body">
+                    {{toast.content}}
+                </div>
+            </div>
+    {{/if}}
+
         <div id="preloder">
             <div class="loader"></div>
         </div>
@@ -50,7 +144,9 @@
             <div class="humberger__menu__cart">
                 <ul>
                     
-                    <li><a href="#"><i class="fa fa-shopping-bag"></i> <span>3</span></a></li>
+                    <li><a href="#"><i class="fa fa-shopping-bag"></i> <span>{{#if cartQuantity}}
+                        {{cartQuantity.product_quantity}}
+                    {{/if}}</span></a></li>
                 </ul>
                 <div class="header__cart__price">Hóa đơn: <span>0.00 VNĐ</span></div>
             </div>
@@ -129,12 +225,23 @@
                                     </ul>
                                 </div>
                                 <div class="header__top__right__auth header__top__right__language">
-                                    <a href="/login"><i class="fa fa-user"></i>Tài khoản
+                                    {{#if user}}
+                                        <a href="/login"><i class="fa fa-user"></i>{{user.firstname}}
+                                    {{else}}
+                                        <a href="/login"><i class="fa fa-user"></i>Tài khoản
+                                    {{/if}}
+                                    
                                         <span class="arrow_carrot-down"></span>
                                         <ul>
-                                            <li><a href="/login">Đăng nhập</a></li>
-                                            <li><a href="/login">Đăng xuất</a></li>
-                                            <li><a href="/profile">Cá nhân</a></li>
+                                            {{#if user}}
+                                                <li><a href="/profile">Cá nhân</a></li>
+                                                <li><a id="logout-btn" href="#">Đăng xuất</a></li>
+                                            {{else}}
+                                                <li><a href="/login">Đăng nhập</a></li>
+                                            {{/if}}
+                                            
+                                            
+                                            
                                         </ul>
                                 </div>
                                 </a>
@@ -164,7 +271,9 @@
                         <div class="header__cart">
                             <ul>
                                 
-                                <li><a href="/cart"><i class="fa fa-shopping-bag"></i> <span>3</span></a></li>
+                                <li><a href="/cart"><i class="fa fa-shopping-bag"></i> {{#if cartQuantity}}
+                        <span>{{cartQuantity.product_quantity}}</span>
+                    {{/if}}</a></li>
                             </ul>
                             <div class="header__cart__price">Hóa đơn: <span>0.00 VNĐ</span></div>
                         </div>
@@ -256,7 +365,7 @@
 
         <!-- Js Plugins -->
 
-
+    <form action="/logout?_method=DELETE" method="post" id="logout-form"></form>
 
         <script src="/userRole/js/jquery-3.3.1.min.js"></script>
         <script src="/userRole/js/bootstrap.min.js"></script>

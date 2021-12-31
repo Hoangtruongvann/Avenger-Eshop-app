@@ -88,6 +88,13 @@
     position: relative;
     float: left;
 
+    .search_result{
+        background-color:red;
+        height:100px;
+        width:100px;
+        z-index: 1000;
+    }
+
     form {
 
         .hero__search__categories {

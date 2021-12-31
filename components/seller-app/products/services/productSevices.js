@@ -1,4 +1,6 @@
+const async = require('hbs/lib/async');
 const {models} = require('../../../../models');
+const sequelize = require('sequelize')
 
 
 exports.getAll = (page = 0,itemPerPage = 6,shop_id) =>
@@ -57,4 +59,36 @@ exports.getImagesProduct = (id) =>
         where:{product_id:id},
         raw:true
     })
+}
+exports.delete = (id) =>
+{
+    return models.products.update({
+        is_active: false},{
+        where: {
+            product_id: id,
+        }
+    });
+}
+exports.update = async (id,name,price,category_name,brand_name,quantity,model_year,descriptions) =>
+{
+    let brand = await models.brands.findOne({where:{brand_name:brand_name},raw:true});
+    if(!brand)
+        brand = await models.brands.create({ brand_name: brand_name, descriptions: "Thương hiệu mới đang được xây dựng.",address:"none"});
+    let category = await models.categories.findOne({where:{category_name:category_name},raw:true});
+    if(!category)
+        category = await models.categories.create({ category_name: category_name, descriptions: "Loại sản phẩm mới."});
+    return models.products.update({
+        product_name:name,
+        price:price,
+        brand_id:brand.brand_id,
+        category_id:category.category_id,
+        quantity:quantity,
+        model_year: model_year,
+        descriptions:descriptions,
+    },{
+        where:{
+            product_id:id,
+    }
+    });
+        
 }

@@ -7,6 +7,7 @@ const expbs= require('express-handlebars');
 const session = require('express-session')
 const passport = require('passport');
 const flash = require('express-flash');
+const methodOverride = require('method-override');
 // router set up
 const indexRouter = require('./components/user-app/home/routes/indexRouter');
 const productRouter = require('./components/user-app/product/routes/productRouter');
@@ -34,6 +35,8 @@ app.use(
       saveUninitialized: true,
   }),
 );
+// override with the X-HTTP-Method-Override header in the request
+app.use(methodOverride('_method'));
 
 //passport
 const initialize = require('./config/passport');
@@ -41,20 +44,33 @@ initialize(passport);
 app.use(passport.initialize());
 app.use(passport.session());
 
+//middleware
+const authenRole = require('./middleware/detectRole')
+const authenAccount = require('./middleware/authen')
+
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use(async function(req, res, next) {
+	res.locals.user = req.user;
+  if (req?.user?.user_id){
+    [res.locals.cartQuantity] = await require('./components/user-app/cart/services/cartDetail').count(req.user.user_id);
+    
+  }
+	next();
+});
+
 app.use('/', indexRouter);
 app.use('/', authRouter);
 app.use('/products', productRouter);
 app.use('/cart',cartRouter);
 
-app.use('/seller',dashboardRouter);
-app.use('/seller/account',sellerAccountRouter);
-app.use('/seller/products',productAccountRouter);
+app.use('/seller', authenAccount.isLoggedIn , authenRole.isSeller,dashboardRouter);
+app.use('/seller/account', authenAccount.isLoggedIn , authenRole.isSeller,sellerAccountRouter);
+app.use('/seller/products', authenAccount.isLoggedIn , authenRole.isSeller,productAccountRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
