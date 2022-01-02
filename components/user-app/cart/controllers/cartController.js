@@ -15,8 +15,8 @@ exports.cart = async(req, res, next) => {
     // })
 
     for (let i = 0; i < products.length; i++) {
-        // lay ra chi tiet san pham 
-        let proDetail = await productM.getlOne(products[i].product_id);
+        // lay ra chi tiet san pham  ( productM gom bang images + category + brand + products)
+        let proDetail = await productM.getOne(products[i].product_id);
         // lay ra so luong 
         proDetail.quantity = products[i].quantity;
         // noi 2 bang  lai 
