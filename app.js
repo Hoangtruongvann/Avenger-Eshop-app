@@ -3,7 +3,7 @@ const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
-const expbs= require('express-handlebars');
+const expbs = require('express-handlebars');
 const session = require('express-session')
 const passport = require('passport');
 const flash = require('express-flash');
@@ -16,6 +16,7 @@ const authRouter = require('./components/user-app/authen/routes/authRouter');
 const dashboardRouter = require('./components/seller-app/dashboard/routes/dashboardRouter');
 const sellerAccountRouter = require('./components/seller-app/account/routes/accountRouter');
 const productAccountRouter = require('./components/seller-app/products/routes/productRouter');
+const orderRouter = require('./components/seller-app/orders/routes/ordersRouter');
 
 
 
@@ -29,11 +30,11 @@ app.use(flash());
 
 //session
 app.use(
-  session({
-      secret: 'secret',
-      resave: true,
-      saveUninitialized: true,
-  }),
+    session({
+        secret: 'secret',
+        resave: true,
+        saveUninitialized: true,
+    }),
 );
 // override with the X-HTTP-Method-Override header in the request
 app.use(methodOverride('_method'));
@@ -55,37 +56,37 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(async function(req, res, next) {
-	res.locals.user = req.user;
-  if (req?.user?.user_id){
-    [res.locals.cartQuantity] = await require('./components/user-app/cart/services/cartDetail').count(req.user.user_id);
-    
-  }
-	next();
+    res.locals.user = req.user;
+    if (req?.user?.user_id) {
+        [res.locals.cartQuantity] = await require('./components/user-app/cart/services/cartDetail').count(req.user.user_id);
+
+    }
+    next();
 });
 
 app.use('/', indexRouter);
 app.use('/', authRouter);
 app.use('/products', productRouter);
-app.use('/cart',cartRouter);
-
-app.use('/seller', authenAccount.isLoggedIn , authenRole.isSeller,dashboardRouter);
-app.use('/seller/account', authenAccount.isLoggedIn , authenRole.isSeller,sellerAccountRouter);
-app.use('/seller/products', authenAccount.isLoggedIn , authenRole.isSeller,productAccountRouter);
+app.use('/cart', cartRouter);
+app.use('/seller/orders', orderRouter);
+app.use('/seller', authenAccount.isLoggedIn, authenRole.isSeller, dashboardRouter);
+app.use('/seller/account', authenAccount.isLoggedIn, authenRole.isSeller, sellerAccountRouter);
+app.use('/seller/products', authenAccount.isLoggedIn, authenRole.isSeller, productAccountRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
-  next(createError(404));
+    next(createError(404));
 });
 
 // error handler
 app.use(function(err, req, res, next) {
-  // set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
+    // set locals, only providing error in development
+    res.locals.message = err.message;
+    res.locals.error = req.app.get('env') === 'development' ? err : {};
 
-  // render the error page
-  res.status(err.status || 500);
-  res.render('error');
+    // render the error page
+    res.status(err.status || 500);
+    res.render('error');
 });
 
 
