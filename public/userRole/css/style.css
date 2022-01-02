@@ -1773,7 +1773,7 @@ ol {
 	background: #f5f5f5;
 }
 
-.product__details__text ul {
+.product__details__text .ul_detail {
 	border-top: 1px solid #ebebeb;
 	padding-top: 40px;
 	margin-top: 50px;
@@ -1896,6 +1896,11 @@ ol {
 
 .product__details__tab .product__details__tab__desc {
 	padding-top: 44px;
+}
+
+.product__details__tab .product__details__tab__desc li {
+	margin-bottom: 0;
+	margin-right: 65px;
 }
 
 .product__details__tab .product__details__tab__desc h6 {

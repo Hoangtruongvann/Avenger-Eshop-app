@@ -248,7 +248,7 @@
                 <div class="dropdown-divider"></div>
                 <a href="#" class="dropdown-item">
                   <i class="ni ni-user-run"></i>
-                  <span>Đăng xuất</span>
+                  <span id="logout-btn">Đăng xuất</span>
                 </a>
               </div>
             </li>
@@ -287,6 +287,7 @@
       </footer>
     </div>
   </div>
+  <form action="/logout?_method=DELETE" method="post" id="logout-form"></form>
   <!-- Argon Scripts -->
   <!-- Core -->
   <script src="/sellerRole/vendor/jquery/dist/jquery.min.js"></script>
@@ -299,6 +300,7 @@
   <script src="/sellerRole/vendor/chart.js/dist/Chart.extension.js"></script>
   <!-- Argon JS -->
   <script src="/sellerRole/js/argon.js?v=1.2.0"></script>
+  <script src="/sellerRole/js/login.js"></script>
 </body>
 
 </html>

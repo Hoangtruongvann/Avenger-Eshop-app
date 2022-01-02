@@ -1,4 +1,5 @@
 <!-- Breadcrumb Section Begin -->
+<!-- data-setbg la gi-->
     <section class="breadcrumb-section set-bg" data-setbg="/userRole/img/breadcrumb.jpg">
         <div class="container">
             <div class="row">
@@ -35,28 +36,30 @@
                             <tbody>
                                 <form id="update-form" action="/cart/update" method="post">
                                     {{#each products}}
-                                        <tr>
-                                            <td class="shoping__cart__item">
-                                                <img src="{{image_link}}" alt="" width="100px" height="100px">
-                                                <h5>{{product_name}}</h5>
-                                            </td>
-                                            <td class="shoping__cart__price">
-                                                {{price}}
-                                            </td>
-                                            <td class="shoping__cart__quantity">
-                                                <div class="quantity">
-                                                    <div class="pro-qty">
-                                                        <input type="text" name = "quantity" value="{{quantity}}">
+                                            <tr>
+                                                <td class="shoping__cart__item">
+                                                <a href="/products/detail/{{product_id}}">
+                                                    <img src="{{image_link}}" alt="" width="100px" height="100px">
+                                                    <h5>{{product_name}}</h5>
+                                                </a>
+                                                </td>
+                                                <td class="shoping__cart__price">
+                                                    {{price}}
+                                                </td>
+                                                <td class="shoping__cart__quantity">
+                                                    <div class="quantity">
+                                                        <div class="pro-qty">
+                                                            <input type="text" name = "quantity" value="{{quantity}}">
+                                                        </div>
                                                     </div>
-                                                </div>
-                                            </td>
-                                            <td class="shoping__cart__total">
-                                                {{total}}
-                                            </td>
-                                            <td class="shoping__cart__item__close">
-                                                <span class="icon_close" data-id="{{product_id}}"  data-toggle="modal" data-target="#delete-form"></span> 
-                                            </td>
-                                        </tr>
+                                                </td>
+                                                <td class="shoping__cart__total">
+                                                    {{total}}
+                                                </td>
+                                                <td class="shoping__cart__item__close">
+                                                    <span class="icon_close" data-id="{{product_id}}"  data-toggle="modal" data-target="#delete-form"></span>
+                                                </td>
+                                            </tr>
                                     {{/each}}
                                 </form>
                                 
@@ -68,7 +71,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="shoping__cart__btns">
-                        <a href="/" class="primary-btn">CONTINUE SHOPPING</a>
+                        <a href="/products/list" class="primary-btn">CONTINUE SHOPPING</a>
                         <a id="update-btn" href="#" class="primary-btn cart-btn-right" style="margin-left: 600px">
                             update Cart</a>
                     </div>
