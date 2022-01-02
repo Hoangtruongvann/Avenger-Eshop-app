@@ -1,14 +1,20 @@
 const async = require('hbs/lib/async');
 const productServices = require('../services/productSevices')
-const models = require('../../../../models')
+const {models} = require('../../../../models')
 
 
 //Get all product of this seller
 exports.listProduct =  async (req,res,next) =>{
     const user = req.user;
     const id = user.user_shop;
-    const products =await productServices.getAll(0,6,id);
-    res.render('../components/seller-app/products/views/productList',{layout: 'sellerLayout.hbs',products});
+    const page = !isNaN(req.query.page) && req.query.page > 0 ? req.query.page - 1 : 0;
+    const itemPerPage = 5;
+    const search_name = req.query.seacrh_name;
+    console.log(search_name);
+    const products =await productServices.getAll(page,itemPerPage,id,search_name);
+    const pages = Math.round(products.count / itemPerPage);
+    console.log(pages);
+    res.render('../components/seller-app/products/views/productList',{layout: 'sellerLayout.hbs',products:products.rows,pages,search_name});
 }
 // add a new product
 exports.addProduct = (req,res,next) =>{
