@@ -8,13 +8,12 @@ exports.listProduct =  async (req,res,next) =>{
     const user = req.user;
     const id = user.user_shop;
     const page = !isNaN(req.query.page) && req.query.page > 0 ? req.query.page - 1 : 0;
-    const itemPerPage = 5;
-    const search_name = req.query.seacrh_name;
-    console.log(search_name);
+    const itemPerPage = 4;
+    const search_name = req.query.key;
+    console.log(req.query.key);
     const products =await productServices.getAll(page,itemPerPage,id,search_name);
     const pages = Math.round(products.count / itemPerPage);
-    console.log(pages);
-    res.render('../components/seller-app/products/views/productList',{layout: 'sellerLayout.hbs',products:products.rows,pages,search_name});
+    res.render('../components/seller-app/products/views/productList',{layout: 'sellerLayout.hbs',products:products.rows,pages,search_name,page,next:page<pages-1?page+2:pages, prev:page>=1?page:1});
 }
 // add a new product
 exports.addProduct = (req,res,next) =>{

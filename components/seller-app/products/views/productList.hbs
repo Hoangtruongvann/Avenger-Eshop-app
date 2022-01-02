@@ -5,16 +5,18 @@
                 <div class="col-lg-6 col-7">
                     <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
 
-                        <form class="navbar-search navbar-search-light form-inline mr-sm-3" id="navbar-search-main" method="GET" action = "/seller/products">
+                        <form class="navbar-search navbar-search-light form-inline mr-sm-3" id="navbar-search-main"
+                            method="GET" action="/seller/products">
                             <div class="form-group mb-0">
                                 <div class="input-group input-group-alternative input-group-merge">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fas fa-search"></i></span>
                                     </div>
-                                    <input class="form-control" placeholder="Tìm kiếm" type="text" name ="search_name" value="{{search}}">
+                                    <input class="form-control" placeholder="Tìm kiếm" type="text" name="key"
+                                        value="{{search_name}}">
                                 </div>
                             </div>
-                            <button type="summit" class="close"  aria-label="Close" value="summit">
+                            <button type="summit" class="close" aria-label="Close" value="summit">
                                 <span aria-hidden="true">×</span>
                             </button>
                         </form>
@@ -40,9 +42,9 @@
                 </div>
                 <div class="card-body">
                     <div class="container">
-                       
+
                         <div class="row icon-examples product-tittle">
-                              {{#if products}}
+                            {{#if products}}
                             <div class="col-1">
                             </div>
                             <div class="col-4">
@@ -62,11 +64,11 @@
                             </div>
                         </div>
                     </div>
-                   
+
                     <div class="row icon-examples">
-                      {{#each products}}
+                        {{#each products}}
                         <div class="col-lg-12">
-                              
+
                             <button type="button" class="btn-icon-clipboard" data-clipboard-text="active-40">
                                 <div class="row">
                                     <div class="col-1 product-if">
@@ -106,17 +108,34 @@
                         {{/each}}
 
                     </div>
+                    {{#if search_name}}
                     <div>
                         <ul class="pagination modal-1" style="margin-left:45%">
-                            <li><a href="#" class="prev">&laquo</a></li>
-                            <li><a href="#">1</a></li>
-                            <li><a href="#" class="next">&raquo;</a></li>
+                            <li><a href="/seller/products?key={{search_name}}&page={{prev}}" class="prev">&laquo;</a></li>
+                            {{#pages pages page search_name }}
+
+                            <li ><a href="/seller/products?key={{search_name}}&page={{index}}" class ="{{active}}">{{index}}</a></li>
+                            {{/pages}}
+
+                            <li class ="{{active}}"><a href="/seller/products?key={{search_name}}&page={{next}}" class="next">&raquo;</a></li>
                         </ul>
                     </div>
-        
+                    {{else}}
+                    <div>
+                        <ul class="pagination modal-1" style="margin-left:45%">
+                            <li><a href="/seller/products?page={{prev}}" class="prev">&laquo;</a></li>
+                            {{#pages pages page search_name }}
+
+                            <li ><a href="/seller/products?page={{index}}" class ="{{active}}">{{index}}</a></li>
+                            {{/pages}}
+
+                            <li class ="{{active}}"><a href="/seller/products?page={{next}}" class="next">&raquo;</a></li>
+                        </ul>
+                    </div>
+                    {{/if}}
                 </div>
                 {{else}}
-                <h1 >Thêm sản phẩm và bắt đầu kinh doanh ngay bây giờ!</h1>
+                <h1>Thêm sản phẩm và bắt đầu kinh doanh ngay bây giờ!</h1>
                 {{/if}}
             </div>
         </div>

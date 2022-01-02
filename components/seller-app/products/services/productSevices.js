@@ -25,7 +25,7 @@ exports.getAll = (page = 0, itemPerPage = 5, shop_id, search) => {
                     is_active: true,
                     shop_id: shop_id,
                     product_name: {
-                        [Op.substring]: search_name,
+                        [Op.substring]: search,
                       },
                 }
                 ,
