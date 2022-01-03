@@ -9,7 +9,7 @@ exports.listProduct =  async (req,res,next) =>{
     const id = user.user_shop;
     const page = !isNaN(req.query.page) && req.query.page > 0 ? req.query.page - 1 : 0;
     const itemPerPage = 5;
-    const search_name = req.query.seacrh_name;
+    const search_name = req.query.key;
     console.log(search_name);
     const products =await productServices.getAll(page,itemPerPage,id,search_name);
     const pages = Math.round(products.count / itemPerPage);
