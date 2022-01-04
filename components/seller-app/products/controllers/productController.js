@@ -113,7 +113,7 @@ exports.createProduct = (req,res,next) =>{
 // delete a product
 exports.deleteProduct = async (req,res,next) =>
 {
-    const id = req.body.id;
+    const id = req.params.id;
     await productServices.delete(id);
     res.redirect('/seller/products');
 }

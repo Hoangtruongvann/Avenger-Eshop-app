@@ -89,12 +89,12 @@
                                     <div class="col-1 p-btn">
                                         <div class="row">
                                             <div class="col-6" style="margin-top:2px">
-                                                <form action="/seller/products/delete" method="POST" id="delete-form">
-                                                    <input type="hidden" name="id" value="{{product_id}}">
-                                                    <a href="#" class="delete-btn"
-                                                        onclick="document.getElementById('delete-form').submit()"><i
-                                                            class="fas fa-trash"></i></a>
-                                                </form>
+                                                {{!-- <form action="/seller/products/delete" method="POST" id="delete-form"> --}}
+                                                    {{!-- <input type="hidden" name="id" value="{{product_id}}"> --}}
+                                                    <span class="" data-id="{{product_id}}"  data-toggle="modal" data-target="#delete-form"><i class="fas fa-trash"></i></span> 
+                                                       
+                                                            
+                                                {{!-- </form> --}}
                                             </div>
                                             <div class="col-6">
                                                 <a href="/seller/products/edit/{{product_id}}"><i
@@ -141,3 +141,44 @@
         </div>
     </div>
 </div>
+
+<div class="modal fade" id = "delete-form" tabindex="-1" role="dialog">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Xóa khỏi cửa hàng</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <p>Khách hàng sẽ không thể xem hoặc mua sản phẩm này từ cửa hàng của bạn nữa<br>Bạn có chắc chắn muốn xóa sản phẩm khỏi cửa hàng không? </p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger" id="delete-confirm">Xóa</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <form action="#" method="post" id="deleteForm"></form>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', ()=>{
+	$(document).ready(function(){
+
+	  $('#delete-form').on('show.bs.modal', function (event) {
+		var button = $(event.relatedTarget)
+		var _id = button.data('id')
+		$('#deleteForm').attr('action',`/seller/products/delete/${_id}`);
+
+
+	  })
+
+	  $('#delete-confirm').on('click', ()=>{
+		$('#deleteForm').submit();
+	  })
+
+	})});
+    </script>
