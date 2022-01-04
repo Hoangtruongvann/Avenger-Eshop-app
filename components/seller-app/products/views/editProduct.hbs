@@ -10,10 +10,10 @@
                 </div>
             </div>
             <div class="card-body">
-            {{#with product}}
+                {{#with product}}
                 <form method="POST" action="/seller/products/update" id="add-product" enctype="multipart/form-data">
                     <h6 class="heading-small text-muted mb-4">Thông tin sản phẩm</h6>
-                    <input type="hidden" name = "id" value ={{product_id}}>
+                    <input type="hidden" name="id" value={{product_id}}>
                     <div class="pl-lg-4">
                         <div class="row">
                             <div class="col-lg-6">
@@ -40,7 +40,7 @@
                             <div class="col-lg-6">
                                 <div class="form-group">
                                     <label for="brand" class="form-control-label">Chọn hãng sản phẩm</label>
-                                   <input type="text" id="brand" name="brand" class="form-control"
+                                    <input type="text" id="brand" name="brand" class="form-control"
                                         placeholder="Hãng sản xuất" value="{{'brand.brand_name'}}" required="">
                                 </div>
                             </div>
@@ -54,36 +54,41 @@
                             <div class="col-lg-6">
                                 <div class="form-group">
                                     <label class="form-control-label" for="quantity">Số lượng</label>
-                                    <input type="text" id="quantity" name="quantity" class="form-control" placeholder="Số lượng sản phẩm" value="{{quantity}}" required="">
+                                    <input type="text" id="quantity" name="quantity" class="form-control"
+                                        placeholder="Số lượng sản phẩm" value="{{quantity}}" required="">
                                 </div>
                             </div>
                         </div>
-                         {{/with}}
+                        {{/with}}
                         <hr class="my-4">
                         <!-- Description -->
                         <h6 class="heading-small text-muted mb-4">Hình ảnh</h6>
                         <div class="pl-lg-4">
                             <div class="row">
-                               {{#each images}}
+                                {{#each images}}
                                 <div class="col-lg-4">
                                     <div class="form-group">
                                         <div class="file-field">
                                             <div class="z-depth-1-half mb-4">
-                                                <img src="{{image_link}}"
-                                                    class="img-fluid" alt="example placeholder" id="img{{image_stt}}">
+                                                <img src="{{image_link}}" class="img-fluid" alt="example placeholder"
+                                                    id="img{{image_stt}}">
                                             </div>
                                             <div class="d-flex justify-content-center">
                                                 <div class="btn btn-mdb-color btn-rounded float-left">
-                                                    <label class="form-control-label" for="product_img{{image_stt}}">Hình ảnh
+                                                    <label class="form-control-label"
+                                                        for="product_img{{image_stt}}">Hình ảnh
                                                         {{image_stt}}</label>
-                                                   <input type="file" id="product_img{{image_stt}}" style="display:none;" name ="product_img{{image_stt}}" onChange="preview(this,{{image_stt}})"/>
-                                                   <button class ="btn-primary" type="button" onclick="document.getElementById('product_img{{image_stt}}').click();">Browse</button>
+                                                    <input type="file" id="product_img{{image_stt}}"
+                                                        style="display:none;" name="product_img{{image_stt}}"
+                                                        onChange="preview(this,{{image_stt}})" />
+                                                    <button class="btn-primary" type="button"
+                                                        onclick="document.getElementById('product_img{{image_stt}}').click();">Browse</button>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>   
-                                {{/each}}  
+                                </div>
+                                {{/each}}
                             </div>
                         </div>
                         {{#with product}}
@@ -96,21 +101,23 @@
                                 <textarea rows="4" class="form-control"
                                     placeholder="Vài mô tả cho sản phẩm của bạn ...">{{descriptions}}</textarea>
                             </div>
-                             <span "text-right" style = "float: right;">
+                            <span "text-right" style="float: right;">
                                 <button class="btn btn-sm btn-primary" type="submit" value="submit"
                                     style="font-size: 18px;" form="add-product">Xác nhận</button>
                             </span>
-                             <span "text-right" style = "float:right; margin-right: 10px;">
-                                <a class="btn btn-sm btn-warning" style="font-size: 18px;"  href ="/seller/products">Quay lại</a>
+                            <span "text-right" style="float:right; margin-right: 10px;">
+                                <a class="btn btn-sm btn-warning" style="font-size: 18px;" href="/seller/products">Quay
+                                    lại</a>
                             </span>
                         </div>
                     </div>
                     {{/with}}
+
+                </form>
+
+
             </div>
+
         </div>
-        </form>
-       
     </div>
-</div>
-</div>
 </div>
