@@ -1,8 +1,17 @@
+const cloudinary = require('cloudinary').v2;
+const formidable = require('formidable');
+
 const async = require('hbs/lib/async');
 const productServices = require('../services/productSevices')
 const {models} = require('../../../../models')
-
-
+const multer = require('multer');
+const path = require('path');
+//setting cloudinary
+cloudinary.config({
+	cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+	api_key: process.env.CLOUDINARY_API_KEY,
+	api_secret: process.env.CLOUDINARY_API_SECRET
+});
 //Get all product of this seller
 exports.listProduct =  async (req,res,next) =>{
     const user = req.user;
@@ -18,6 +27,88 @@ exports.listProduct =  async (req,res,next) =>{
 // add a new product
 exports.addProduct = (req,res,next) =>{
     res.render('../components/seller-app/products/views/addProduct',{layout: 'sellerLayout.hbs'});
+}
+//create a product
+exports.createProduct = (req,res,next) =>{
+    try {
+		const form = formidable({ multiples: true });
+		form.parse(req, async (err, fields, files) => {
+			if (err) {
+				next(err);
+			}
+			else {
+				console.log(fields.name,fields.price,fields.category,fields.brand,fields.quantity,req.user.user_shop);
+				const newProduct = (await productServices.addProduct({
+					product_name: fields.name,
+					price: fields.price,
+					category: fields.category,
+					descriptions: fields.descriptions,
+					brand: fields.brand,
+					quantity:fields.quantity,
+					model_year: fields.model_year,
+                    shop_id:req.user.user_shop
+				})).get({ plain: true });
+
+				
+				const image = [];
+
+				if (files.product_img1) {
+					await cloudinary.uploader.upload(product_img1['filepath'], 
+					{
+						folder: 'products',
+					},
+					 (err, result) => {
+						if (err) {
+							console.log(err);
+						}
+						else {
+							image.push(result.url);
+						}
+					});
+				}
+				
+				if (files.product_img2) {
+					await cloudinary.uploader.upload(product_img2['filepath'], {
+						folder: 'products',
+					}, (err, result) => {
+						if (err) {
+							console.log(err);
+						}
+						else {
+							image.push(result.url);
+						}
+					});
+				}
+
+				if (files.product_img3) {
+					await cloudinary.uploader.upload(product_img3['filepath'], {
+						folder: 'products',
+					},
+					(err, result) => {
+						if (err) {
+							console.log(err);
+						}
+						else {
+							image.push(result.url);
+						}
+					});
+				}
+				image.forEach(async (item, index) => {
+					await models.images.create({
+						product_id: newProduct.product_id,
+						image_stt: index + 1,
+						image_link: item
+					});
+				});
+				
+				//req.flash('success', 'Thêm sản phẩm thành công');
+				res.redirect('/seller/products?message=createsuccess');
+			}
+		});
+	}
+	catch (err) {
+		next(err);
+	}
 }
 // delete a product
 exports.deleteProduct = async (req,res,next) =>

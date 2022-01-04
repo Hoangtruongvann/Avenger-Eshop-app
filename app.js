@@ -9,6 +9,7 @@ const session = require('express-session')
 const passport = require('passport');
 const flash = require('express-flash');
 const methodOverride = require('method-override');
+
 // router set up
 const indexRouter = require('./components/user-app/home/routes/indexRouter');
 const productRouter = require('./components/user-app/product/routes/productRouter');

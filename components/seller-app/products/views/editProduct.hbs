@@ -11,7 +11,7 @@
             </div>
             <div class="card-body">
             {{#with product}}
-                <form method="POST" action="/seller/products/update" id="add-product">
+                <form method="POST" action="/seller/products/update" id="add-product" enctype="multipart/form-data">
                     <h6 class="heading-small text-muted mb-4">Thông tin sản phẩm</h6>
                     <input type="hidden" name = "id" value ={{product_id}}>
                     <div class="pl-lg-4">
