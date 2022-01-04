@@ -1086,3 +1086,22 @@ var Scrollbar = (function() {
 	}
 
 })();
+function preview(obj,stt)
+{
+	if (FileReader)
+	{
+		var reader = new FileReader();
+		reader.readAsDataURL(obj.files[0]);
+		reader.onload = function (e) {
+		var image=new Image();
+		image.src=e.target.result;
+		image.onload = function () {
+			document.getElementById("img"+ stt).src=image.src;
+		};
+		}
+	}
+	else
+	{
+		    // Not supported
+	}
+}

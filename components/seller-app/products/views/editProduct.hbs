@@ -70,13 +70,13 @@
                                         <div class="file-field">
                                             <div class="z-depth-1-half mb-4">
                                                 <img src="{{image_link}}"
-                                                    class="img-fluid" alt="example placeholder">
+                                                    class="img-fluid" alt="example placeholder" id="img{{image_stt}}">
                                             </div>
                                             <div class="d-flex justify-content-center">
                                                 <div class="btn btn-mdb-color btn-rounded float-left">
                                                     <label class="form-control-label" for="product_img{{image_stt}}">Hình ảnh
                                                         {{image_stt}}</label>
-                                                   <input type="file" id="product_img{{image_stt}}" style="display:none;" name ="product_img{{image_stt}}" />
+                                                   <input type="file" id="product_img{{image_stt}}" style="display:none;" name ="product_img{{image_stt}}" onChange="preview(this,{{image_stt}})"/>
                                                    <button class ="btn-primary" type="button" onclick="document.getElementById('product_img{{image_stt}}').click();">Browse</button>
                                                 </div>
                                             </div>
