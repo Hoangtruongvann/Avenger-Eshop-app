@@ -4,7 +4,7 @@ const sequelize = require('sequelize')
 const { Op } = require("sequelize");
 
 exports.getAll = (page = 0, itemPerPage = 5, shop_id, search) => {
-    if (search&&search!="")
+    if (search && search != "")
         return models.products.findAndCountAll(
             {
                 include: [{
@@ -25,8 +25,8 @@ exports.getAll = (page = 0, itemPerPage = 5, shop_id, search) => {
                     is_active: true,
                     shop_id: shop_id,
                     product_name: {
-                        [Op.substring]: search_name,
-                      },
+                        [Op.substring]: search,
+                    },
                 }
                 ,
                 raw: true
@@ -116,4 +116,25 @@ exports.update = async (id, name, price, category_name, brand_name, quantity, mo
         }
     });
 
+}
+
+exports.addProduct = async (product) => {
+    let brand = await models.brands.findOne({ where: { brand_name: product.brand }, raw: true });
+    if (!brand)
+        brand = await models.brands.create({ brand_name: product.brand, descriptions: "Thương hiệu mới đang được xây dựng.", address: "none" });
+    let category = await models.categories.findOne({ where: { category_name: product.category }, raw: true });
+    if (!category)
+        category = await models.categories.create({ category_name: product.category, descriptions: "Loại sản phẩm mới." });
+    return models.products.create(
+        {
+            product_name: product.product_name,
+            price: product.price,
+            category_id: category.category_id,
+            descriptions: product.descriptions,
+            brand_id: brand.brand_id,
+            quantity: product.quantity,
+            model_year: product.model_year,
+            shop_id: product.shop_id
+        }
+    );
 }

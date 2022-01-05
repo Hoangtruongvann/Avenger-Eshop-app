@@ -1,5 +1,6 @@
 const createError = require('http-errors');
 const express = require('express');
+const exphbs = require('express-handlebars')
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
@@ -8,6 +9,7 @@ const session = require('express-session')
 const passport = require('passport');
 const flash = require('express-flash');
 const methodOverride = require('method-override');
+
 // router set up
 const indexRouter = require('./components/user-app/home/routes/indexRouter');
 const productRouter = require('./components/user-app/product/routes/productRouter');
@@ -24,8 +26,22 @@ const app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
+app.engine('hbs', exphbs.engine({
+	extname: 'hbs',
+	defaultLayout: 'userLayout',
+	helpers: {
+		'pages': function(pages,page,search_name,block) {
+			var accum = '';
+			for(var i = 1; i < pages+1; ++i)
+			if(i!=page+1)
+				accum += block.fn({index:i,search_name:search_name,active:""});
+			else
+				accum += block.fn({index:i,search_name:search_name,active:"active"});
+			return accum;
+		},
+	}
+}));
 app.set('view engine', 'hbs');
-
 app.use(flash());
 
 //session
