@@ -11,7 +11,7 @@
             </div>
             <div class="card-body">
                 {{#with product}}
-                <form method="POST" action="/seller/products/update" id="add-product" enctype="multipart/form-data">
+                <form method="POST" action="/seller/products/update" id="edit-product" enctype="multipart/form-data">
                     <h6 class="heading-small text-muted mb-4">Thông tin sản phẩm</h6>
                     <input type="hidden" name="id" value={{product_id}}>
                     <div class="pl-lg-4">
@@ -98,12 +98,12 @@
                         <div class="pl-lg-4">
                             <div class="form-group">
                                 <label class="form-control-label">Mô tả sản phẩm</label>
-                                <textarea rows="4" class="form-control"
-                                    placeholder="Vài mô tả cho sản phẩm của bạn ...">{{descriptions}}</textarea>
+                                 <input type="text" id="descriptions" name="descriptions" class="form-control"
+                                        placeholder="Vài mô tả về sản phẩm..." value="{{descriptions}}">
                             </div>
                             <span "text-right" style="float: right;">
                                 <button class="btn btn-sm btn-primary" type="submit" value="submit"
-                                    style="font-size: 18px;" form="add-product">Xác nhận</button>
+                                    style="font-size: 18px;" form="edit-product">Xác nhận</button>
                             </span>
                             <span "text-right" style="float:right; margin-right: 10px;">
                                 <a class="btn btn-sm btn-warning" style="font-size: 18px;" href="/seller/products">Quay

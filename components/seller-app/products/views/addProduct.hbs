@@ -73,9 +73,8 @@
                                                 <div class="btn btn-mdb-color btn-rounded float-left">
                                                     <label class="form-control-label" for="product_img1">Hình ảnh 1
                                                         </label>
-                                                   <input type="file" id="product_img1" style="display:none;" name="product_img1" onChange="preview(this,1)"/>
-                                                   <button class ="btn-primary" type="button" onclick="document.getElementById('product_img1').click();">Browse</button>
-                                                </div>
+                                                   <input type="file" id="product_img1"  name="product_img1" onChange="preview(this,1)" required/>
+                                                 </div>
                                             </div>
                                         </div>
                                     </div>
@@ -91,9 +90,8 @@
                                                 <div class="btn btn-mdb-color btn-rounded float-left">
                                                     <label class="form-control-label" for="product_img2">Hình ảnh 2
                                                         </label>
-                                                   <input type="file" id="product_img2" style="display:none;" name="product_img2" onChange="preview(this,2)"/>
-                                                   <button class ="btn-primary" type="button" onclick="document.getElementById('product_img2').click();">Browse</button>
-                                                </div>
+                                                   <input type="file" id="product_img2"  name="product_img2" onChange="preview(this,2)" required/>
+                                                     </div>
                                             </div>
                                         </div>
                                     </div>
@@ -109,9 +107,8 @@
                                                 <div class="btn btn-mdb-color btn-rounded float-left">
                                                     <label class="form-control-label" for="product_img3">Hình ảnh 3
                                                         </label>
-                                                   <input type="file" id="product_img3" style="display:none;" name="product_img3" onChange="preview(this,3)"/>
-                                                   <button class ="btn-primary" type="button" onclick="document.getElementById('product_img3').click();">Browse</button>
-                                                </div>
+                                                   <input type="file" id="product_img3"  name="product_img3" onChange="preview(this,3)" required/>
+                                                      </div>
                                             </div>
                                         </div>
                                     </div>
@@ -124,8 +121,8 @@
                         <div class="pl-lg-4">
                             <div class="form-group">
                                 <label class="form-control-label">Mô tả sản phẩm</label>
-                                <textarea rows="4" class="form-control"
-                                    placeholder="Vài mô tả cho sản phẩm của bạn ..."></textarea>
+                                <input type="text" id="descriptions" name="descriptions" class="form-control"
+                                        placeholder="Vài mô tả về sản phẩm..." value="{{descriptions}}">
                             </div>
                              <span "text-right" style = "float: right;">
                                 <button class="btn btn-sm btn-primary" type="submit" value="submit"

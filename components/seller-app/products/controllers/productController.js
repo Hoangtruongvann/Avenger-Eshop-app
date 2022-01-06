@@ -124,86 +124,107 @@ exports.editProduct = async (req, res, next) => {
 }
 //update new infomation for product
 exports.updateProduct = async (req, res, next) => {
-	const form = formidable({ multiples: true });
-	form.parse(req, async (err, fields, files) => {
-		if (err) {
-			next(err);
-		}
-		else {
-	const id = fields.id;
-	const name = fields.name;
-	const price = fields.price;
-	const category = fields.category;
-	const brand = fields.brand;
-	const quantity = fields.quantity;
-	const model_year = fields.model_year;
-	const descriptions = fields.descriptions;
-	await productServices.update(id, name, price, category, brand, quantity, model_year, descriptions)
-	const form = formidable({ multiples: true });
+	try {
+		const form = formidable({ multiples: true });
+		form.parse(req, async (err, fields, files) => {
+			if (err) {
+				next(err);
+			}
+			else {
+				const id = fields.id;
+				const name = fields.name;
+				const price = fields.price;
+				const category = fields.category;
+				const brand = fields.brand;
+				const quantity = fields.quantity;
+				const model_year = fields.model_year;
+				const descriptions = fields.descriptions;
+				await productServices.update(id, name, price, category, brand, quantity, model_year, descriptions)
+
+				const image = [];
 	
-			// const image = [];
+				if (files.product_img1.size!=0) {
+					await cloudinary.uploader.upload(files.product_img1['filepath'],
+						{
+							folder: 'products',
+						},
+						(err, result) => {
+							if (err) {
+								console.log(err);
+							}
+							else {
+								image.push(result.url);
+							}
 
-			// if (files.product_img1) {
-			// 	await cloudinary.uploader.upload(files.product_img1['filepath'],
-			// 		{
-			// 			folder: 'products',
-			// 		},
-			// 		(err, result) => {
-			// 			if (err) {
-			// 				console.log(err);
-			// 			}
-			// 			else {
-			// 				image.push(result.url);
-			// 			}
-
-			// 		}
+						}
 
 
-			// 	);
-			// }
-			// else
-			// 	image.push(0);
+					);
+				}
+				else
+					{
+						image.push(0);
+					}
 
-			// if (files.product_img2) {
-			// 	await cloudinary.uploader.upload(files.product_img2['filepath'], {
-			// 		folder: 'products',
-			// 	}, (err, result) => {
-			// 		if (err) {
-			// 			console.log(err);
-			// 		}
-			// 		else {
-			// 			image.push(result.url);
-			// 		}
-			// 	});
-			// }
-			// else
-			// 	image.push(0);
-			// if (files.product_img3) {
-			// 	await cloudinary.uploader.upload(files.product_img3['filepath'], {
-			// 		folder: 'products',
-			// 	},
-			// 		(err, result) => {
-			// 			if (err) {
-			// 				console.log(err);
-			// 			}
-			// 			else {
-			// 				image.push(result.url);
-			// 			}
-			// 		});
-			// }
-			// else
-			// 	image.push(0);
-			// image.forEach(async (item, index) => {
-			// 	if (item != 0)
-			// 		await models.images.update({
-			// 			image_link: item,
-			// 			where: { product_id: id, image_stt: index + 1 }
-			// 		}
+				if (files.product_img2.size!=0) {
+					await cloudinary.uploader.upload(files.product_img2['filepath'], {
+						folder: 'products',
+					}, (err, result) => {
+						if (err) {
+							console.log(err);
+						}
+						else {
+							image.push(result.url);
+						}
+					});
+				}
+				else
+					{
+						image.push(0);
+					}
+				if (files.product_img3.size!=0) {
+					await cloudinary.uploader.upload(files.product_img3['filepath'], {
+						folder: 'products',
+					},
+						(err, result) => {
+							if (err) {
+								console.log(err);
+							}
+							else {
+								image.push(result.url);
+							}
+						});
+				}
+				else
+					{
+						image.push(0);
+					}
+					
 
-			//		);
-			//});
-		}
-	});
+				image.forEach(async (item, index) => {
+					if (item!=0)
+						{
+							console.log(index+1)
+							await models.images.update({
+								image_link: item,
+							},
+							{
+								where: {
+									product_id: id, 
+									image_stt:index+1 }
+							}
+	
+							);
+						}
+				});
+			}
+			res.redirect('/seller/products?update=success');
+		});
 
-	res.redirect('/seller/products?update=success');
+		
+
+	}
+	catch (err) {
+		next(err);
+	}
 }
