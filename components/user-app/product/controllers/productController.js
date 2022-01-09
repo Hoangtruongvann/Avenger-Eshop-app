@@ -1,8 +1,19 @@
 const productM = require('../services/products')
+const categoryM = require('../services/category')
 
 
 exports.list = async (req,res,next)=>
 {
+    let categories = await categoryM.getAll();
+	for(let i in categories) {
+		categories[i] = categories[i].dataValues
+	}
+	for(let i =0;i< categories.length;i++) {
+		if (categories[i].parent_category){
+			categories.splice(i, 1)
+			i--;
+		}
+	}
     if (!req.query.page){
         req.query.page = 1;
     }
@@ -10,7 +21,7 @@ exports.list = async (req,res,next)=>
     products.forEach(value => {
         value.image_link = value['images.image_link']
     });
-    res.render('../components/user-app/product/views/productList',{layout: 'userLayout', products:products})
+    res.render('../components/user-app/product/views/productList',{layout: 'userLayout', products:products,categories:categories})
 }
 
 exports.detail = async (req, res, next) => {
@@ -43,6 +54,16 @@ exports.fetching = async function (req, res, next){
 }
 
 exports.search = async function (req, res, next){
+    let categories = await categoryM.getAll();
+	for(let i in categories) {
+		categories[i] = categories[i].dataValues
+	}
+	for(let i =0;i< categories.length;i++) {
+		if (categories[i].parent_category){
+			categories.splice(i, 1)
+			i--;
+		}
+	}
     let key = req.query.key;
     let products = await productM.getFull(1, 1000);
     let response = [];
@@ -53,6 +74,7 @@ exports.search = async function (req, res, next){
     response.forEach(value => {
         value.image_link = value['images.image_link']
     });
-    res.render('../components/user-app/product/views/productList',{layout: 'userLayout', products:response, search:true})
+    res.render('../components/user-app/product/views/productList',{layout: 'userLayout', products:response, search:true,categories:categories})
     // res.json(response)
 }
+ 
