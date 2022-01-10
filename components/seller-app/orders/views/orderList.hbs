@@ -22,8 +22,8 @@
                                 <tr>
                                     <th>ID</th>
                                     <th>Date</th>
-                                    <th>Total price</th>
                                     <th>Status</th>
+                                    <th>Total price</th>
                                     <th>Company</th>
                                     <th>Shop</th>
                                    
@@ -52,12 +52,10 @@
                                                     {{'shop.shop_name'}}
                                                 </td>
                                                 <td>
-                                                 <div class="shoping__cart__btns">
-                                                      <a id="update-btn"  href="#" class="primary-btn cart-btn-right" style="float:right">
-                                                          orders detail
-                                                            </a>
-                                                      </div>
-                                                </td>
+                                                  <div class="">
+                                                     <a href="/orders/edit/{{order_id}}"><i
+                                                        class="fas fa-edit"></i></a>
+                                                    </div>
                                               
                                             </tr>
                                     {{/each}}
