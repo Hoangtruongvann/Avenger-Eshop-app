@@ -3,7 +3,7 @@
             <div class="row">
                 <div class="col-lg-12 text-center">
                     <div class="breadcrumb__text">
-                        <h2>Orders Detail</h2>
+                        <h2>Chi tiết đơn hàng</h2>
                         <div class="breadcrumb__option">
                             <a href="/">Home</a>
                         </div>
@@ -17,37 +17,40 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="shoping__cart__table">
+                        
                         <table>
                             <thead>
                                 <tr>
-                                    <th>Order_id</th>
-                                    <th>Product_id</th>
-                                    <th style="width: calc(100% / 3);">Product_name</th>
-                                    <th>Price</th>
-                                    <th>Quantity</th>
+                                    <th>Hình Ảnh</th>
+                                    <th style="width: calc(100% / 3);">Tên sản phẩm</th>
+                                     <th>Tên loại</th>
+                                     <th>Tên hãng</th>
+                                    <th>Đơn giá</th>
+                                    <th>Số lượng</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                    {{#each product1 as |product| }}
+                                    {{#each detail}}
                                             <tr>
                                            
                                                 <td>
-                                                   {{product.[0].order_id}}
+                                                    <img src="{{'product.images.image_link'}}" alt="">
                                                 </td>
                                                 <td >
-                                                    {{product.[0].product_id}}
+                                                    {{'product.product_name'}}
+                                                </td>
+                                                <td>
+                                                    {{'product.category.category_name'}}
                                                 </td>
                                                 <td >
-                                                   {{product.[0].[product.product_name]}} 
+                                                   {{'product.brand.brand_name'}}
                                                 </td>
                                                 <td>
-                                                   {{product.[0].[product.price]}} 
+                                                    {{'product.price'}}
                                                 </td>
                                                 <td>
-                                                    {{product.[0].quantity}}
+                                                    {{quantity}}
                                                 </td>
-                                             
-                                              
                                             </tr>
                                             
                                     {{/each}}

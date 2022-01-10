@@ -22,12 +22,7 @@ exports.show = async(req, res, next) => {
     res.render('../components/seller-app/orders/views/orderList', { layout: 'sellerLayout', orders, quantity: orders.count });
 }
 exports.showDetail = async(req, res, next) => {
-    let product = await orderDetailM.getAllByOrderId(req.params.order_id);
-    let product1 = [];
-    for (let i = 0; i < product.length; i++) {
-        product1.push(await orderDetailM.getAllProduct(product[i].product_id));
-    }
-
-    console.log(product1);
-    res.render('../components/seller-app/orders/views/orderDetail', { layout: 'sellerLayout', product1 });
+    let detail = await orderDetailM.getAllByOrderId(req.params.order_id);
+    console.log(detail);
+    res.render('../components/seller-app/orders/views/orderDetail', { layout: 'sellerLayout',detail});
 }
