@@ -28,8 +28,9 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                    {{#each product1 as |product|}}
+                                    {{#each product1 as |product| }}
                                             <tr>
+                                           
                                                 <td>
                                                    {{product.[0].order_id}}
                                                 </td>
@@ -37,18 +38,18 @@
                                                     {{product.[0].product_id}}
                                                 </td>
                                                 <td >
-                                                   {{!-- {{product.[0].'product.product_name'}}  --}}
+                                                   {{product.[0].[product.product_name]}} 
                                                 </td>
                                                 <td>
-                                                    {{!-- {{'product.price'}} --}}
+                                                   {{product.[0].[product.price]}} 
                                                 </td>
                                                 <td>
                                                     {{product.[0].quantity}}
                                                 </td>
                                              
-                                                
                                               
                                             </tr>
+                                            
                                     {{/each}}
                             
                                 

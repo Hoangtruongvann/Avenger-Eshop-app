@@ -29,5 +29,5 @@ exports.showDetail = async(req, res, next) => {
     }
 
     console.log(product1);
-    res.render('../components/seller-app/orders/views/orderDetail', { layout: 'sellerLayout' });
+    res.render('../components/seller-app/orders/views/orderDetail', { layout: 'sellerLayout', product1 });
 }
