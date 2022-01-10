@@ -12,3 +12,15 @@ exports.getAllByOrderId = (id) => {
         raw: true
     })
 }
+exports.getAllProduct = (id) => {
+    return models.detailorders.findAll({
+        include: [{
+            model: models.products,
+            as: "product"
+        }],
+        where: {
+            product_id: id
+        },
+        raw: true
+    })
+}

@@ -3,7 +3,7 @@
             <div class="row">
                 <div class="col-lg-12 text-center">
                     <div class="breadcrumb__text">
-                        <h2>Orders</h2>
+                        <h2>Orders Detail</h2>
                         <div class="breadcrumb__option">
                             <a href="/">Home</a>
                         </div>
@@ -20,44 +20,33 @@
                         <table>
                             <thead>
                                 <tr>
-                                    <th>ID</th>
-                                    <th>Date</th>
-                                    <th>Total price</th>
-                                    <th>Status</th>
-                                    <th>Company</th>
-                                    <th>Shop</th>
-                                   
-                                   
+                                    <th>Order_id</th>
+                                    <th>Product_id</th>
+                                    <th style="width: calc(100% / 3);">Product_name</th>
+                                    <th>Price</th>
+                                    <th>Quantity</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                    {{#each orders}}
+                                    {{#each product1 as |product|}}
                                             <tr>
+                                                <td>
+                                                   {{product.[0].order_id}}
+                                                </td>
                                                 <td >
-                                                   <a href="/seller/orders/detail/{{order_id}}">{{order_id}}</a> 
+                                                    {{product.[0].product_id}}
                                                 </td>
                                                 <td >
-                                                    {{order_date}}
+                                                   {{!-- {{product.[0].'product.product_name'}}  --}}
                                                 </td>
                                                 <td>
-                                                    {{order_status}}
+                                                    {{!-- {{'product.price'}} --}}
                                                 </td>
                                                 <td>
-                                                    {{order_total_price}}
+                                                    {{product.[0].quantity}}
                                                 </td>
-                                                <td>
-                                                    {{'shipp_com.company_name'}}
-                                                </td>
-                                                <td>
-                                                    {{'shop.shop_name'}}
-                                                </td>
-                                                <td>
-                                                 <div class="shoping__cart__btns">
-                                                      <a id="update-btn"  href="#" class="primary-btn cart-btn-right" style="float:right">
-                                                          orders detail
-                                                            </a>
-                                                      </div>
-                                                </td>
+                                             
+                                                
                                               
                                             </tr>
                                     {{/each}}
