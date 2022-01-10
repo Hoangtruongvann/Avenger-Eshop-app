@@ -9,8 +9,10 @@
                         <span>Danh mục</span>
                     </div>
                     <ul>
-                        <li><a href="#">Điện tử</a></li>
-                        <li><a href="#">Gia dụng</a></li>
+                        {{#each categories}}
+                        <li><a href="/category/{{this.category_id}}">{{this.category_name}}</a></li>
+                        {{/each}}
+                        {{!-- <li><a href="#">Gia dụng</a></li>
                         <li><a href="#">Thời trang</a></li>
                         <li><a href="#">Thực phẩm tươi</a></li>
                         <li><a href="#">Thực phẩm đóng hộp</a></li>
@@ -19,7 +21,7 @@
                         <li><a href="#">Đồ hàng hiệu</a></li>
                         <li><a href="#">Phụ kiện điện tử</a></li>
                         <li><a href="#">Dược phẩm</a></li>
-                        <li><a href="#">Khác</a></li>
+                        <li><a href="#">Khác</a></li> --}}
                     </ul>
                 </div>
             </div>
