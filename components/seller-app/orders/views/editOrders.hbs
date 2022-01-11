@@ -6,7 +6,6 @@
                 <div class="row align-items-center">
                     <div class="col-8">
                         <h3 class="mb-0">Chỉnh sửa đơn hàng </h3>
-                        <h3> Gia tri {{log "debug logging1111111" level="debug"}}</h3>
                     </div>
                 </div>
             </div>
@@ -15,7 +14,7 @@
 
                 <form method="POST" action="/seller/orders/update" id="edit-order" enctype="multipart/form-data">
                     <h6 class="heading-small text-muted mb-4">Thông tin đơn hàng</h6>
-                    <h6> {{order_id}}</h6>
+                 
                     <input type="hidden" name="id" value={{order_id}}>
                     <div class="pl-lg-4">
                         <div class="row">
@@ -30,7 +29,6 @@
                                 <div class="form-group">
                                     <label for="category" class="category">Trạng thái</label>
                                     <select name="status" id="status">
-                                        <option name></option>
                                         <option value="Đang giao" selected>Đang giao</option>
                                         <option value="Đã hoàn thành">Đã hoàn thành</option>
                                     </select>
@@ -77,4 +75,5 @@
         </span>
         </div>
     </div>
+</div>
 </div>
