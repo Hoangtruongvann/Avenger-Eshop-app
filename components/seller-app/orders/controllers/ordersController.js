@@ -34,6 +34,22 @@ exports.editOrders = async(req, res, next) => {
     res.render('../components/seller-app/orders/views/editOrders', { layout: 'sellerLayout', order });
 }
 exports.updateOrders = async(req, res, next) => {
-    res.redirect('/seller/orders?update=success');
+    // const form = formidable({ multiples: true });
+
+    // form.parse(req, async(err, fields, files) => {
+    //     console.log(fields);
+    //     const id = fields.order_id;
+    //     const name = fields.name;
+    //     const price = fields.price;
+    //     const category = fields.category;
+    //     const brand = fields.brand;
+    //     const quantity = fields.quantity;
+    //     const model_year = fields.model_year;
+    //     const descriptions = fields.descriptions;
+    //     await orderM.update(id, name, price, category, brand, quantity, model_year, descriptions)
+    // });
+    let id = req.id;
+
+
 
 }

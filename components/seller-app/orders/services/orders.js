@@ -23,7 +23,7 @@ exports.getAllById = (id, id1) => {
     })
 }
 exports.getAllByIdOrder = (id) => {
-    return models.orders.findAll({
+    return models.orders.findOne({
         include: [{
                 model: models.shipcoms,
                 as: "shipp_com"
