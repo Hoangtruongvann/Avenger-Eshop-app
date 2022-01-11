@@ -1,72 +1,158 @@
- <section class="breadcrumb-section set-bg" data-setbg="/sellerRole/img/breadcrumb.jpg">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12 text-center">
-                    <div class="breadcrumb__text">
-                        <h2>Orders</h2>
-                        <div class="breadcrumb__option">
-                            <a href="/">Home</a>
+{{!-- <section class="breadcrumb-section set-bg" data-setbg="/sellerRole/img/breadcrumb.jpg">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <div class="breadcrumb__text">
+                    <h2>Orders</h2>
+                    <div class="breadcrumb__option">
+                        <a href="/">Home</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="shoping-cart spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="shoping__cart__table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Date</th>
+                                <th>Status</th>
+                                <th>Total price</th>
+                                <th>Company</th>
+                                <th>Shop</th>
+
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {{#each orders}}
+                            <tr>
+                                <td>
+                                    {{order_id}}
+                                </td>
+                                <td>
+                                    {{order_date}}
+                                </td>
+                                <td>
+                                    {{order_status}}
+                                </td>
+                                <td>
+                                    {{order_total_price}}
+                                </td>
+                                <td>
+                                    {{'shipp_com.company_name'}}
+                                </td>
+                                <td>
+                                    {{'shop.shop_name'}}
+                                </td>
+                                <td>
+                                    <div class="" style="display: flex;">
+                                        <a href="/seller/orders/edit/{{order_id}}" style="margin-right: 2px;"><i
+                                                class="fas fa-edit"></i></a>
+                                        <a href="/seller/orders/detail/{{order_id}}">
+                                            <i class="fas fa-eye"></i></a>
+                                    </div>
+
+                            </tr>
+                            {{/each}}
+
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+--}}
+<div class="container-fluid mt--6">
+    <div class="row justify-content-center">
+        <div class=" col ">
+            <div class="card">
+                <div class="card-header bg-transparent">
+                    <h3 class="mb-0">Đơn hàng</h3>
+                </div>
+                <div class="card-body">
+                    <div class="container">
+
+                        <div class="row icon-examples product-tittle">
+                            {{#if orders}}
+                            <div class="col-2">
+                                <h5>Mã đơn hàng</h5>
+                            </div>
+                            <div class="col-2">
+                                <h5> Ngày giao</h5>
+                            </div>
+                            <div class="col-2">
+                                <h5> Trạng thái</h5>
+                            </div>
+                            <div class="col-2">
+                                <h5>Giá tiền</h5>
+                            </div>
+                            <div class="col-2">
+                                <h5>Tên công ty</h5>
+                            </div>
+                            <div class="col-1">
+                                <h5>Tên shop</h5>
+                            </div>
+
+                        </div>
+
+
+                        <div class="row icon-examples">
+                            {{#each orders}}
+                            <div class="col-lg-12">
+
+                                <button type="button" class="btn-icon-clipboard" data-clipboard-text="active-40">
+                                    <div class="row">
+                                        <div class="col-2 ">
+                                            {{order_id}}
+                                        </div>
+                                        <div class="col-2 ">
+                                            {{order_date}}
+                                        </div>
+                                        <div class="col-2 ">
+                                            {{order_status}}
+                                        </div>
+                                        <div class="col-2 ">
+                                            {{order_total_price}}
+                                        </div>
+                                        <div class="col-2 ">
+                                            {{'shipp_com.company_name'}}
+                                        </div>
+                                        <div class="col-1 ">
+                                            {{'shop.shop_name'}}
+                                        </div>
+                                        <div class="col-1">
+                                             <div class="" style="display: flex;">
+                                            <a href="/seller/orders/edit/{{order_id}}" style="margin-right: 2px;"><i
+                                                    class="fas fa-edit"></i></a>
+                                            <a href="/seller/orders/detail/{{order_id}}">
+                                                <i class="fas fa-eye"></i></a>
+                                       </div>
+                                        </div>
+                                    </div>
+                                   
+                                </button>
+                                
+                            </div>
+                            
+                            {{/each}}
+
                         </div>
                     </div>
                 </div>
+                {{else}}
+                <h1>Thêm sản phẩm và bắt đầu kinh doanh ngay bây giờ!</h1>
+                {{/if}}
             </div>
         </div>
-</section>
-<section class="shoping-cart spad">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="shoping__cart__table">
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>ID</th>
-                                    <th>Date</th>
-                                    <th>Status</th>
-                                    <th>Total price</th>
-                                    <th>Company</th>
-                                    <th>Shop</th>
-                                   
-                                   
-                                </tr>
-                            </thead>
-                            <tbody>
-                                    {{#each orders}}
-                                            <tr>
-                                                <td >
-                                                   <a href="/seller/orders/detail/{{order_id}}">{{order_id}}</a> 
-                                                </td>
-                                                <td >
-                                                    {{order_date}}
-                                                </td>
-                                                <td>
-                                                    {{order_status}}
-                                                </td>
-                                                <td>
-                                                    {{order_total_price}}
-                                                </td>
-                                                <td>
-                                                    {{'shipp_com.company_name'}}
-                                                </td>
-                                                <td>
-                                                    {{'shop.shop_name'}}
-                                                </td>
-                                                <td>
-                                                  <div class="">
-                                                     <a href="/orders/edit/{{order_id}}"><i
-                                                        class="fas fa-edit"></i></a>
-                                                    </div>
-                                              
-                                            </tr>
-                                    {{/each}}
-                            
-                                
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-            
-        </div>
-    </section>
-   
+    </div>
+</div>

@@ -1,0 +1,65 @@
+<div class="header pb-6 d-flex align-items-center edit-form" style="min-height: 500px; ">
+    <!-- Page content -->
+    <div class="col-xl-12 order-xl-1">
+        <div class="card">
+            <div class="card-header">
+                <div class="row align-items-center">
+                    <div class="col-8">
+                        <h3 class="mb-0">Chỉnh sửa đơn hàng </h3>
+                        <h3> Gia tri   {{log "debug logging1111111" level="debug"}}</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+                {{#with order}}
+              
+                <form method="POST" action="/seller/orders/update" id="edit-product" enctype="multipart/form-data">
+                    <h6 class="heading-small text-muted mb-4">Thông tin đơn hàng</h6>
+                    <h6> {{order_id}}</h6>
+                    <input type="hidden" name="id" value={{order_id}}>
+                    <div class="pl-lg-4">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label class="form-control-label" for="name">Ngày giao hàng</label>
+                                    <input type="text" id="name" name="name" class="form-control"
+                                        placeholder="{{order_date}}" value="{{order_date}}" readonly>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label for="category" class="category">Trạng thái</label>
+                                    <input type="text" id="category" name="category" class="form-control"
+                                        placeholder="{{order_status}}" value="{{order_status}}" readonly>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label class="form-control-label" for="price">Giá</label>
+                                    <input type="text" id="price" name="price" class="form-control"
+                                        placeholder="{{order_total_price}}" value="{{order_total_price}}" required="" readonly>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label for="brand" class="form-control-label">Tên công ty</label>
+                                    <input type="text" id="brand" name="brand" class="form-control"
+                                        placeholder="'order.company_name'" value="'order.company_name'" required="" readonly>
+                                </div>
+                            </div>
+                            
+                          
+                        </div>
+                </form>
+                {{/with}}
+                        <!-- Description -->
+                        
+
+                
+
+
+            </div>
+    </div>
+        </div>
+    </div>
+</div>

@@ -1,6 +1,7 @@
 const orderDetailM = require('../services/ordersDetail');
 const orderM = require('../services/orders');
 const products = require('../../../../models/products');
+const async = require('hbs/lib/async');
 
 exports.show = async(req, res, next) => {
     const id = req.user.user_id;
@@ -24,5 +25,15 @@ exports.show = async(req, res, next) => {
 exports.showDetail = async(req, res, next) => {
     let detail = await orderDetailM.getAllByOrderId(req.params.order_id);
     console.log(detail);
-    res.render('../components/seller-app/orders/views/orderDetail', { layout: 'sellerLayout',detail});
+    res.render('../components/seller-app/orders/views/orderDetail', { layout: 'sellerLayout', detail });
+}
+exports.editOrders = async(req, res, next) => {
+    const id = req.params.order_id;
+    let order = await orderM.getAllByIdOrder(id);
+    console.log(order);
+    res.render('../components/seller-app/orders/views/editOrders', { layout: 'sellerLayout', order });
+}
+exports.updateOrders = async(req, res, next) => {
+    res.redirect('/seller/orders?update=success');
+
 }
