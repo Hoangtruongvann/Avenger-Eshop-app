@@ -108,7 +108,7 @@ Website: http://www.webthemez.com/
                         <li><a href="#"><i class="fa fa-gear fa-fw"></i> Cài đặt</a>
                         </li>
                         <li class="divider"></li>
-                        <li><a href="#"><i class="fa fa-sign-out fa-fw"></i> Đăng xuất</a>
+                        <li><a id="logout-btn" href="#"><i class="fa fa-sign-out fa-fw"></i> Đăng xuất</a>
                         </li>
                     </ul>
                     <!-- /.dropdown-user -->
@@ -121,6 +121,7 @@ Website: http://www.webthemez.com/
         {{{body}}}
 
     </div>
+    <form action="/logout?_method=DELETE" method="post" id="logout-form"></form>
     <!-- /. ROW  -->
 
     <!-- JS Scripts-->
@@ -148,7 +149,7 @@ Website: http://www.webthemez.com/
     <!-- Chart Js -->
     <script type="text/javascript" src="/admin/js/Chart.min.js"></script>
     <script type="text/javascript" src="/admin/js/chartjs.js"></script>
-
+    <script src="/admin/js/login.js"></script>
 </body>
 
 </html>
