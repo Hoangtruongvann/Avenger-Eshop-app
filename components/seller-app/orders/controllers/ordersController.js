@@ -2,6 +2,7 @@ const orderDetailM = require('../services/ordersDetail');
 const orderM = require('../services/orders');
 const products = require('../../../../models/products');
 const async = require('hbs/lib/async');
+const formidable = require('formidable');
 
 exports.show = async(req, res, next) => {
     const id = req.user.user_id;
@@ -30,7 +31,6 @@ exports.showDetail = async(req, res, next) => {
 exports.editOrders = async(req, res, next) => {
     const id = req.params.order_id;
     let order = await orderM.getAllByIdOrder(id);
-    console.log(order);
     res.render('../components/seller-app/orders/views/editOrders', { layout: 'sellerLayout', order });
 }
 exports.updateOrders = async(req, res, next) => {
@@ -48,8 +48,7 @@ exports.updateOrders = async(req, res, next) => {
     //     const descriptions = fields.descriptions;
     //     await orderM.update(id, name, price, category, brand, quantity, model_year, descriptions)
     // });
-    let id = req.id;
-
+    console.log(req.body);
 
 
 }
