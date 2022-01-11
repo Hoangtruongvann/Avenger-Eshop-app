@@ -19,6 +19,8 @@ const dashboardRouter = require('./components/seller-app/dashboard/routes/dashbo
 const sellerAccountRouter = require('./components/seller-app/account/routes/accountRouter');
 const productAccountRouter = require('./components/seller-app/products/routes/productRouter');
 const orderRouter = require('./components/seller-app/orders/routes/ordersRouter');
+const adminRouter = require('./components/admin/dashboard/routes/adminRouter');
+const accountListRouter = require('./components/admin/accountList/routes/accountListRouter');
 
 
 
@@ -88,7 +90,8 @@ app.use('/seller/orders', orderRouter);
 app.use('/seller', authenAccount.isLoggedIn, authenRole.isSeller, dashboardRouter);
 app.use('/seller/account', authenAccount.isLoggedIn, authenRole.isSeller, sellerAccountRouter);
 app.use('/seller/products', authenAccount.isLoggedIn, authenRole.isSeller, productAccountRouter);
-
+app.use('/admin', authenAccount.isLoggedIn, authenRole.isAdmin, adminRouter);
+app.use('/admin/accountList', authenAccount.isLoggedIn, authenRole.isAdmin, accountListRouter);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
     next(createError(404));

@@ -22,6 +22,17 @@ class detectRole{
         }
     }
 
+    isAdmin(req, res, next) {
+        if (req.user.user_role === 'admin')
+        {
+            return next();
+        }
+        else
+        {
+            return res.redirect('/');
+        }
+    }
+
 }
 
 module.exports = new detectRole();

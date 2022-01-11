@@ -1,0 +1,86 @@
+.DSTK {
+    display: flex;
+    justify-content: space-between;
+}
+
+.DSTK .space, .order .space {
+    margin-right: 30px;
+}
+
+.btnDSTK {
+    display: inline-block;
+    
+}
+
+.imageDSSP {
+    display: flex;
+    width: 200px;
+    height: auto;
+}
+
+.inforSP {
+    display: inline-block;
+    font-size: medium;
+}
+
+.btnTSP {
+    background-color: rgb(49, 206, 153);
+    font-size: medium;
+    font-weight: bold;
+    width: 300px;
+    height: 50px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+}
+
+.btnSuaXoa {
+    display: flex;
+    justify-content:space-around;
+}
+
+.btnSua, .btnXoa {
+    width: 70px;
+}
+
+ul {
+    list-style: none;
+}
+
+/* phan info */
+
+.list li{
+    padding: 16px;
+    font-size: 18px;
+    text-align: right;
+}
+
+.list-info li{
+    padding: 10px;
+}
+.list-info input{
+    height: 35px;
+    width: 100%;
+    border-radius: 5px;
+    border: none;
+    font-size: 18px;
+}
+
+.avatar img{
+    border-radius: 50%;
+    width: 120px;
+    border: solid #777 2px;
+    box-shadow: 0px 0px 5px 3px #999;
+}
+.name{
+    font-size: 25px;
+    padding: 15px;
+}
+.name i{
+    font-size: 20px;
+    padding-left: 5px;
+}
+
+.order .table {
+    border: 1;
+
+}
