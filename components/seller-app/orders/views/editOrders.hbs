@@ -26,15 +26,16 @@
                                 <input type="text" id="name" name="name" class="form-control"
                                     placeholder="{{order_date}}" value="{{order_date}}" readonly>
                             </div>
-                        </div>
-                        <div class="col-lg-6">
-                            <div class="form-group">
-                                <label for="category" class="category">Trạng thái</label>
-                                <select>
-                                    <option value="Đang giao hàng">Đang giao hàng</option>
-                                    <option value="Đã hoàn thành">Đã hoàn thành</option>
-
-                                </select>
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label for="category" class="category">Trạng thái</label>
+                                    <select name="status" id="status">
+                                        <option name></option>
+                                        <option value="Đang giao" selected>Đang giao</option>
+                                        <option value="Đã hoàn thành">Đã hoàn thành</option>
+                                    </select>
+                                 
+                                </div>
                             </div>
                         </div>
                         <div class="col-lg-6">
