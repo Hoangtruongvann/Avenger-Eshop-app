@@ -1,0 +1,114 @@
+﻿
+        <!--/. NAV TOP  -->
+        <nav class="navbar-default navbar-side" role="navigation">
+            <div class="sidebar-collapse">
+                <ul class="nav" id="main-menu">
+
+                    <li>
+                        <a class="active-menu" href="/admin"><i class="fa fa-dashboard"></i> Bảng điều khiển</a>
+                    </li>
+                    <li>
+                        <a href="/admin/accountList"><i class="fa fa-desktop"></i> Danh sách tài khoản</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <!-- /. NAV SIDE  -->
+
+        <div id="page-wrapper">
+            <div class="header">
+                <h1 class="page-header">
+                    Bảng điều khiển
+                </h1>
+                <ol class="breadcrumb">
+                    <li><a href="#">Trang chủ</a></li>
+                    <li><a href="#">Bảng điều khiển</a></li>
+                    <li class="active">Dữ liệu</li>
+                </ol>
+
+            </div>
+            <div id="page-inner">
+
+                <!-- /. ROW  -->
+
+                <div class="row">
+                    <div class="col-md-4 col-sm-12 col-xs-12">
+                        <div class="board">
+                            <div class="panel panel-primary">
+                                <div class="number">
+                                    <h3>
+                                        <h3>20</h3>
+                                        <small>Số thành viên mới trong ngày</small>
+                                    </h3>
+                                </div>
+                                <div class="icon">
+                                    <i class="fa fa-user fa-5x yellow"></i>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 col-sm-12 col-xs-12">
+                        <div class="board">
+                            <div class="panel panel-primary">
+                                <div class="number">
+                                    <h3>
+                                        <h3>10</h3>
+                                        <small>Số đơn hàng trong ngày</small>
+                                    </h3>
+                                </div>
+                                <div class="icon">
+                                    <i class="fa fa-shopping-cart fa-5x blue"></i>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 col-sm-12 col-xs-12">
+                        <div class="board">
+                            <div class="panel panel-primary">
+                                <div class="number">
+                                    <h3>
+                                        <h3>56</h3>
+                                        <small>Số bình luận trong ngày</small>
+                                    </h3>
+                                </div>
+                                <div class="icon">
+                                    <i class="fa fa-comments fa-5x green"></i>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6 col-xs-12">
+                        <div class="panel panel-default chartJs">
+                            <div class="panel-heading">
+                                <div class="card-title">
+                                    <div class="title">Biểu đồ thành viên mới</div>
+                                </div>
+                            </div>
+                            <div class="panel-body">
+                                <canvas id="line-chart" class="chart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-xs-12">
+                        <div class="panel panel-default chartJs">
+                            <div class="panel-heading">
+                                <div class="card-title">
+                                    <div class="title">Biểu đồ đơn hàng </div>
+                                </div>
+                            </div>
+                            <div class="panel-body">
+                                <canvas id="line-chart" class="chart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

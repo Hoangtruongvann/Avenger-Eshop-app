@@ -1,0 +1,144 @@
+ {{!-- <section class="breadcrumb-section set-bg" data-setbg="/sellerRole/img/breadcrumb.jpg">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <div class="breadcrumb__text">
+                        <h2>Chi tiết đơn hàng</h2>
+                        <div class="breadcrumb__option">
+                            <a href="/">Home</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+</section>
+<section class="shoping-cart spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="shoping__cart__table">
+                        
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Hình Ảnh</th>
+                                    <th style="width: calc(100% / 3);">Tên sản phẩm</th>
+                                     <th>Tên loại</th>
+                                     <th>Tên hãng</th>
+                                    <th>Đơn giá</th>
+                                    <th>Số lượng</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                    {{#each detail}}
+                                            <tr>
+                                           
+                                                <td>
+                                                    <img src="{{'product.images.image_link'}}" alt="">
+                                                </td>
+                                                <td >
+                                                    {{'product.product_name'}}
+                                                </td>
+                                                <td>
+                                                    {{'product.category.category_name'}}
+                                                </td>
+                                                <td >
+                                                   {{'product.brand.brand_name'}}
+                                                </td>
+                                                <td>
+                                                    {{'product.price'}}
+                                                </td>
+                                                <td>
+                                                    {{quantity}}
+                                                </td>
+                                            </tr>
+                                            
+                                    {{/each}}
+                            
+                                
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </section>
+    --}}
+    <div class="container-fluid mt--6">
+    <div class="row justify-content-center">
+        <div class=" col ">
+            <div class="card">
+                <div class="card-header bg-transparent">
+                    <h3 class="mb-0">Chi tiết đơn hàng</h3>
+                </div>
+                <div class="card-body">
+                    <div class="container">
+
+                        <div class="row icon-examples product-tittle">
+                            {{#if detail}}
+                            <div class="col-2">
+                                <h5>Hình ảnh</h5>
+                            </div>
+                            <div class="col-2">
+                                <h5>Tên sản phẩm</h5>
+                            </div>
+                            <div class="col-2">
+                                <h5>Tên loại</h5>
+                            </div>
+                            <div class="col-2">
+                                <h5>Tên hãng</h5>
+                            </div>
+                            <div class="col-2">
+                                <h5>Đơn giá</h5>
+                            </div>
+                            <div class="col-1">
+                                <h5>Số lượng</h5>
+                            </div>
+
+                        </div>
+
+
+                        <div class="row icon-examples" style="margin: -5px -61px;">
+                            {{#each detail}}
+                            <div class="col-lg-12">
+
+                                <button type="button" class="btn-icon-clipboard" data-clipboard-text="active-40">
+                                    <div class="row">
+                                        <div class="col-2 ">
+                                            <img src="{{'product.images.image_link'}}" alt="">
+                                        </div>
+                                        <div class="col-2 ">
+                                            {{'product.product_name'}}
+                                        </div>
+                                        <div class="col-2 ">
+                                            {{'product.category.category_name'}}
+                                        </div>
+                                        <div class="col-2 ">
+                                            {{'product.brand.brand_name'}}
+                                        </div>
+                                        <div class="col-2 ">
+                                             {{'product.price'}}
+                                        </div>
+                                        <div class="col-2 ">
+                                            {{quantity}}
+                                        </div>
+                                        
+                                    </div>
+                                   
+                                </button>
+                                
+                            </div>
+                            
+                            {{/each}}
+
+                        </div>
+                    </div>
+                </div>
+                {{else}}
+                <h1>Thêm don hang và bắt đầu kinh doanh ngay bây giờ!</h1>
+                {{/if}}
+            </div>
+        </div>
+    </div>
+</div>
