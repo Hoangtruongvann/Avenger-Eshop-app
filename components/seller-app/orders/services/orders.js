@@ -53,3 +53,12 @@ exports.getOrders = (id) => {
         raw: true
     });
 }
+exports.update = (id, id1, id2, id3, id4) => {
+    return models.orders.update({
+        order_status: id3
+    }, {
+        where: {
+            order_id: id
+        },
+    });
+}
