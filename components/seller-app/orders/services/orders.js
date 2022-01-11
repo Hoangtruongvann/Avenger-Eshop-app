@@ -22,6 +22,21 @@ exports.getAllById = (id, id1) => {
         raw: true
     })
 }
+exports.getAllByIdOrder = (id) => {
+    return models.orders.findOne({
+        include: [{
+                model: models.shipcoms,
+                as: "shipp_com"
+
+            }
+
+        ],
+        where: {
+            order_id: id
+        },
+        raw: true
+    });
+}
 exports.getUserShop = (id) => {
     return models.users.findAll({
         where: {

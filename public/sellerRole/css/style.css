@@ -1,36 +1,44 @@
-.product-tittle h5
-{
+.product-tittle h5 {
     font-weight: 700;
     font-size: 16px;
     color: blue;
 }
-.delete-btn i
-{
+
+.delete-btn i {
     font-size: 20px;
     display: inline;
     float: left;
-
 }
 
-.p-btn i:hover
-{
+select {
+    opacity: 1;
+    background-color: #e9ecef;
+    display: block;
+    /* height: 43px; */
+    color: rgb(177, 57, 21);
+    font-weight: 700;
+    font-size: .875rem;
+    height: calc(1.5em + 1.25rem + 5px);
+    transition: all .15s ease-in-out;
+    width: 100%;
+}
+
+.p-btn i:hover {
     color: red;
 }
 
-
-.btn-primary, .btn-warning
-{
+.btn-primary,
+.btn-warning {
     padding: 10px 20px 10px 20px;
 }
 
-.product-if img
-{
+.product-if img {
     height: 55px;
     width: 55px;
 }
 
-.edit-form input,.edit-form textarea
-{
+.edit-form input,
+.edit-form textarea {
     color: rgb(177, 57, 21);
     font-weight: 700;
 }
@@ -39,36 +47,44 @@
     -moz-border-radius: 6px 0 0 6px;
     -webkit-border-radius: 6px;
     border-radius: 6px 0 0 6px;
-  }
-  .modal-1 li:last-child a {
+}
+
+.modal-1 li:last-child a {
     -moz-border-radius: 0 6px 6px 0;
     -webkit-border-radius: 0;
     border-radius: 0 6px 6px 0;
-  }
-  .modal-1 a {
+}
+
+.modal-1 a {
     border-color: #ddd;
     color: #4285F4;
     background: rgb(22, 124, 124);
-  }
-  .modal-1 a:hover {
+}
+
+.modal-1 a:hover {
     background: #eee;
-  }
-  .modal-1 a.active, .modal-1 a:active {
+}
+
+.modal-1 a.active,
+.modal-1 a:active {
     border-color: #4285F4;
     background: #4285F4;
     color: #fff;
-  }
-  .pagination {
+}
+
+.pagination {
     list-style: none;
     display: inline-block;
     padding: 0;
     margin-top: 10px;
-  }
-  .pagination li {
+}
+
+.pagination li {
     display: inline;
     text-align: center;
-  }
-  .pagination a {
+}
+
+.pagination a {
     float: left;
     display: block;
     font-size: 14px;
@@ -78,12 +94,12 @@
     margin-left: -1px;
     border: 1px solid transparent;
     line-height: 1.5;
-  }
-  .pagination a.active {
-    cursor: default;
-  }
-  .pagination a:active {
-    outline: none;
-  }
+}
 
-  
+.pagination a.active {
+    cursor: default;
+}
+
+.pagination a:active {
+    outline: none;
+}
