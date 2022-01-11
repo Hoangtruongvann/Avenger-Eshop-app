@@ -1,129 +1,135 @@
 const async = require('hbs/lib/async');
-const {models} = require('../../../../models');
+const { models } = require('../../../../models');
 const { Op } = require("sequelize");
 
-exports.getAll = (page = 0,itemPerPage = 6) =>
-{
+exports.getAll = (page = 0, itemPerPage = 6) => {
     return models.products.findAll(
         {
-            include : [{
-                model : models.images,
-                as : 'images',
-                where : {
+            include: [{
+                model: models.images,
+                as: 'images',
+                where: {
                     image_stt: 1
                 },
-            },{
-                model : models.categories,
-                as : 'category',
+            }, {
+                model: models.categories,
+                as: 'category',
             },
             {
-            model: models.brands,
-            as:'brand'
+                model: models.brands,
+                as: 'brand'
             }]
             ,
-            raw : true
-            ,offset:page*itemPerPage,limit:itemPerPage
+            raw: true
+            , offset: page * itemPerPage, limit: itemPerPage
         });
 }
 
-exports.getFull = () =>
-{
+exports.getFull = () => {
     return models.products.findAll(
         {
-            include : [{
-                model : models.images,
-                as : 'images',
-                where : {
+            include: [{
+                model: models.images,
+                as: 'images',
+                where: {
                     image_stt: 1
                 },
-            },{
-                model : models.categories,
-                as : 'category',
+            }, {
+                model: models.categories,
+                as: 'category',
             },
             {
-            model: models.brands,
-            as:'brand'
+                model: models.brands,
+                as: 'brand'
             }]
             ,
-            raw : true
+            raw: true
         });
 }
 
-exports.getAllFetch = (page = 0,itemPerPage = 6) =>
-{
+exports.getAllFetch = (page = 0, itemPerPage = 6) => {
     return models.products.findAll(
         {
             attributes: [
                 'product_id',
                 'product_name'
-              ]
+            ]
         });
 }
 
-exports.getOne = (id) =>
-{
+exports.getOne = (id) => {
     return models.products.findOne(
         {
-            include : 
-            [
-                {
-                model : models.categories,
-                as : 'category',
-                },
-                {
-                model: models.brands,
-                as:'brand'
-                }   
-            ],
-            where:{
-                is_active:true,
-                product_id:id
+            include:
+                [
+                    {
+                        model: models.categories,
+                        as: 'category',
+                    },
+                    {
+                        model: models.brands,
+                        as: 'brand'
+                    }
+                ],
+            where: {
+                is_active: true,
+                product_id: id
             },
-            raw : true
+            raw: true
         });
 }
 
 
-exports.getImagesProduct = (id) =>
-{
+exports.getImagesProduct = (id) => {
     return models.images.findAll({
-        where:{product_id:id},
-        raw:true
+        where: { product_id: id },
+        raw: true
     })
 }
-exports.getOneImageProduct = (id) =>
-{
+exports.getOneImageProduct = (id) => {
     return models.images.findOne({
-        where:{product_id:id},
-        raw:true
+        where: { product_id: id },
+        raw: true
     })
 }
 
-exports.getShop = async (id) => 
-{
+exports.getShop = async (id) => {
     const product = await this.getOne(id);
     return models.shops.findOne({
-        where:{shop_id: product.shop_id},
-        raw:true
+        where: { shop_id: product.shop_id },
+        raw: true
     })
 }
 
-exports.getRelatedProducts = async (product_id, category_id) => 
-{
+exports.getRelatedProducts = async (product_id, category_id) => {
     return models.products.findAll({
-        include : [{
-            model : models.images,
-            as : 'images',
-            where : {
+        include: [{
+            model: models.images,
+            as: 'images',
+            where: {
                 image_stt: 1
             },
         }],
-        where:{
-            category_id: category_id,   
+        where: {
+            category_id: category_id,
             product_id: {
                 [Op.ne]: product_id
             }
         },
         raw: true
+    })
+}
+
+exports.getReviews = async (id) => {
+    return models.reviews.findAll({
+        include: [{
+            model: models.users,
+            as: 'user',
+        }],
+        where: {
+            product_id: id
+        },
+        raw: true,
+        
     })
 }
