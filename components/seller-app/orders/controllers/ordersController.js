@@ -23,6 +23,5 @@ exports.show = async(req, res, next) => {
 }
 exports.showDetail = async(req, res, next) => {
     let detail = await orderDetailM.getAllByOrderId(req.params.order_id);
-    console.log(detail);
     res.render('../components/seller-app/orders/views/orderDetail', { layout: 'sellerLayout',detail});
 }
