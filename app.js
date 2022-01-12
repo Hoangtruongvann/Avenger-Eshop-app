@@ -10,6 +10,7 @@ const passport = require('passport');
 const flash = require('express-flash');
 const methodOverride = require('method-override');
 
+
 // router set up
 const indexRouter = require('./components/user-app/home/routes/indexRouter');
 const productRouter = require('./components/user-app/product/routes/productRouter');
@@ -25,7 +26,36 @@ const accountListRouter = require('./components/admin/accountList/routes/account
 
 
 const app = express();
+// add helper
+var hbs = exphbs.create({});
+hbs.handlebars.registerHelper('ifCond', function (v1, operator, v2, options) {
 
+    switch (operator) {
+        case '==':
+            return (v1 == v2) ? options.fn(this) : options.inverse(this);
+        case '===':
+            return (v1 === v2) ? options.fn(this) : options.inverse(this);
+        case '!=':
+            return (v1 != v2) ? options.fn(this) : options.inverse(this);
+        case '!==':
+            return (v1 !== v2) ? options.fn(this) : options.inverse(this);
+        case '<':
+            return (v1 < v2) ? options.fn(this) : options.inverse(this);
+        case '<=':
+            return (v1 <= v2) ? options.fn(this) : options.inverse(this);
+        case '>':
+            return (v1 > v2) ? options.fn(this) : options.inverse(this);
+        case '>=':
+            return (v1 >= v2) ? options.fn(this) : options.inverse(this);
+        case '&&':
+            return (v1 && v2) ? options.fn(this) : options.inverse(this);
+        case '||':
+            return (v1 || v2) ? options.fn(this) : options.inverse(this);
+        default:
+            return options.inverse(this);
+    }
+  });
+  
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.engine('hbs', exphbs.engine({
