@@ -39,19 +39,31 @@ exports.cart = async(req, res, next) => {
 }
 
 exports.add = async(req, res, next) => {
+    let result;
 
     if (!req.isAuthenticated()) {
         return res.json({ result: 'redirect' })
     }
 
-    let cart = {};
-    cart.product_id = req.query.id;
-    cart.user_id = req.user.user_id;
-    cart.quantity = 1;
-    let result = await cartM.addToCart(cart);
+    let cart = await cartM.getOneBydoubleId(req.user.user_id, req.query.id)
+    if (cart.length != 0){
+        cart = cart[0];
+        cart.quantity++;
+        result = await cartM.addToCart(cart);
+
+    }
+    else{
+        cart = {};
+        cart.user_id = req.user.user_id;
+        cart.product_id = req.query.id;
+        cart.quantity = 1;
+        result = await cartM.addToCart1(cart);
+    }
+
+    // let result =null;
     if (result) {
         res.json({ result: 'ok' })
-
+ 
     } else {
         res.json({ result: 'already exist' })
     }

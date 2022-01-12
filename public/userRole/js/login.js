@@ -75,7 +75,7 @@ $('.addToCart').on('click', async function(e) {
 		$('.toast#f2').toast({delay:1100})
 		$('.toast#f2').toast('show')
 	}
-})
+}) 
 
 $('#update-btn').on('click',async function(e){
 	e.preventDefault();

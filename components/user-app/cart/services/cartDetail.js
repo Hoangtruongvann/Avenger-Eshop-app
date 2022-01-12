@@ -1,5 +1,6 @@
 const { models } = require('../../../../models');
-const sequelize = require('sequelize')
+const sequelize = require('sequelize');
+const detailcarts = require('../../../../models/detailcarts');
 
 exports.getAll = () => {
     return models.detailcarts.findAll();
@@ -14,7 +15,29 @@ exports.getOneByUSId = (id) => {
     });
 }
 
+exports.getOneBydoubleId = (Uid,Pid) => {
+    return models.detailcarts.findAll({
+        where: {
+            user_id: Uid
+            ,product_id: Pid
+        },
+        raw: true
+    });
+}
+
 exports.addToCart = async(product) => {
+
+    try {
+        const res = await models.detailcarts.update(product,{where: {
+            product_id: product.product_id
+          }});
+        return res;
+    } catch (error) {
+        console.log('error:' + error);
+        return null;
+    }
+}
+exports.addToCart1 = async(product) => {
 
     try {
         const res = await models.detailcarts.create(product);
