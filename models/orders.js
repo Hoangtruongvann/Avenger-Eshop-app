@@ -32,7 +32,7 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false,
       references: {
         model: 'shipcoms',
-        key: 'company_id'
+        key: 'shipp_com_id'
       }
     },
     shop_id: {

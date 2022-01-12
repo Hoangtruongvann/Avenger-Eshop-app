@@ -45,7 +45,7 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: true,
       references: {
         model: 'shipcoms',
-        key: 'company_id'
+        key: 'shipp_com_id'
       }
     },
     user_shop: {

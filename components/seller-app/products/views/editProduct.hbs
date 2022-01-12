@@ -20,42 +20,42 @@
                                 <div class="form-group">
                                     <label class="form-control-label" for="name">Tên sản phẩm</label>
                                     <input type="text" id="name" name="name" class="form-control"
-                                        placeholder="Tên sản phẩm" value="{{product_name}}" required="">
+                                        placeholder="Tên sản phẩm" value="{{product_name}}" required="" maxlength="50">
                                 </div>
                             </div>
                             <div class="col-lg-6">
                                 <div class="form-group">
                                     <label for="category" class="category">Chọn loại sản phẩm</label>
                                     <input type="text" id="category" name="category" class="form-control"
-                                        placeholder="Loại sản phẩm" value="{{'category.category_name'}}" required="">
+                                        placeholder="Loại sản phẩm" value="{{'category.category_name'}}" required="" maxlength="50">
                                 </div>
                             </div>
                             <div class="col-lg-6">
                                 <div class="form-group">
                                     <label class="form-control-label" for="price">Giá</label>
-                                    <input type="text" id="price" name="price" class="form-control"
-                                        placeholder="Giá sản phẩm" value="{{price}}" required="">
+                                    <input type="number" id="price" name="price" class="form-control"
+                                        placeholder="Giá sản phẩm" value="{{price}}" required="" min ="1">
                                 </div>
                             </div>
                             <div class="col-lg-6">
                                 <div class="form-group">
                                     <label for="brand" class="form-control-label">Chọn hãng sản phẩm</label>
                                     <input type="text" id="brand" name="brand" class="form-control"
-                                        placeholder="Hãng sản xuất" value="{{'brand.brand_name'}}" required="">
+                                        placeholder="Hãng sản xuất" value="{{'brand.brand_name'}}" required="" maxlength="50">
                                 </div>
                             </div>
                             <div class="col-lg-6">
                                 <div class="form-group">
                                     <label class="form-control-label" for="model_year">Năm sản xuất</label>
-                                    <input type="text" id="model_year" name="model_year" class="form-control"
-                                        placeholder="Năm sản xuất" value="{{model_year}}" required="">
+                                    <input type="number" id="model_year" name="model_year" class="form-control"
+                                        placeholder="Năm sản xuất" value="{{model_year}}" required="" min ="1900" max="2022">
                                 </div>
                             </div>
                             <div class="col-lg-6">
                                 <div class="form-group">
                                     <label class="form-control-label" for="quantity">Số lượng</label>
-                                    <input type="text" id="quantity" name="quantity" class="form-control"
-                                        placeholder="Số lượng sản phẩm" value="{{quantity}}" required="">
+                                    <input type="number" id="quantity" name="quantity" class="form-control"
+                                        placeholder="Số lượng sản phẩm" value="{{quantity}}" required="" min="1">
                                 </div>
                             </div>
                         </div>

@@ -31,13 +31,19 @@ exports.detail = async (req, res, next) => {
         if (product.quantity > 0)
             product.isAvailable = true;
     }
+
     let images = await productM.getImagesProduct(req.params.product_id);
     let shop = await productM.getShop(req.params.product_id);
     let relatedProducts = await productM.getRelatedProducts(product.product_id, product.category_id); 
     if (relatedProducts.length > 4) {
         relatedProducts = relatedProducts.slice(0, 5);
     } 
-    res.render('../components/user-app/product/views/productDetail', { layout: 'userLayout', product: product, images: images, shop: shop, relatedProducts })
+    let user = req.user;
+    let reviews = await productM.getReviews(req.params.product_id);
+    
+    console.log("🚀 ~ file: productController.js ~ line 38 ~ exports.detail= ~ relatedProducts", reviews)
+    
+    res.render('../components/user-app/product/views/productDetail', { layout: 'userLayout', product: product, images: images, shop: shop, relatedProducts, user, reviews })
 }
 
 exports.fetching = async function (req, res, next){
