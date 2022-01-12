@@ -6,7 +6,10 @@ exports.profile = async (req, res, next) => {
         const user = req.user;
         const shop_id = user.user_shop;
         const shop = await accountService.getShop(shop_id);
-        res.render('../components/seller-app/account/views/profile', { layout: 'sellerLayout.hbs', shop });
+        const products = await accountService.countProduct(shop_id);
+        const orders = await accountService.countOrder(shop_id);
+        const reviews = await accountService.countReview(shop_id);
+        res.render('../components/seller-app/account/views/profile', { layout: 'sellerLayout.hbs', shop,countProduct:products.count,countOrder:orders.count, countReview:reviews.count});
     }
     catch (error) {
         next(error);

@@ -28,13 +28,26 @@ exports.createShop = (shop) =>
 
 exports.countOrder = (shop_id) =>
 {
-
+    return models.orders.findAndCountAll({where:{shop_id:shop_id},raw:true})
 }
 exports.countProduct = (shop_id) =>
 {
-
+    return models.products.findAndCountAll({where:{shop_id:shop_id,is_active:1},raw:true})
 }
+
 exports.countReview = (shop_id) =>
 {
-
+    return models.reviews.findAndCountAll({
+        include:[
+            {
+                model:models.products,
+                as:'product',
+                where:
+                {
+                    shop_id:shop_id    
+                }
+            },  
+        ], 
+        raw:true
+    });
 }
