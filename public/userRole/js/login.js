@@ -24,10 +24,10 @@ $('#search_input').on('keyup', async function(e){
 
 $('#search_input2').on('keyup', async function(e){
 
-	$('.search_result2').empty();
-	if (this.value == ""){return;}
+	if (this.value == ""){$('.search_result2').empty();return;}
 	let result = await fetch(`/products/fetch?key=${this.value}`);
 	result = await result.json();
+	$('.search_result2').empty();
 	result.forEach(value=>{
 		$('.search_result2').append(`<a href="/products/detail/${value.product_id}"><div class="text">${value.product_name}</div></a>`);
 	})

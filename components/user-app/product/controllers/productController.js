@@ -4,6 +4,10 @@ const categoryM = require('../services/category');
 
 exports.list = async (req,res,next)=>
 {
+    let itemsPerPage = 6;
+    let currPage = req.query.page ? req.query.page : 1;
+
+
     let categories = await categoryM.getAll();
 	for(let i in categories) {
 		categories[i] = categories[i].dataValues
@@ -17,11 +21,36 @@ exports.list = async (req,res,next)=>
     if (!req.query.page){
         req.query.page = 1;
     }
-    let products = await productM.getAll(req.query.page - 1, 9);
+    let products = await productM.getFull();
     products.forEach(value => {
         value.image_link = value['images.image_link']
     });
-    res.render('../components/user-app/product/views/productList',{layout: 'userLayout', products:products,categories:categories})
+
+
+
+    let pages;
+    let pageList = [];
+    pages = Math.ceil(products.length / itemsPerPage) == 0 ? 1 : Math.ceil(products.length / itemsPerPage);
+
+    for (let i = 1; i <= pages; i++){
+        pageList.push({num: i});
+    }
+
+    pageList[currPage - 1].active = 1;
+
+    products = products.slice((currPage - 1) * itemsPerPage, currPage * itemsPerPage);
+
+    
+    let first = {}; let last =  {};
+    first.page = 1;
+    last.page = pages;
+    if (currPage == pages){
+        last.state = 'disabled';
+    }else last.state = null;
+    if (currPage == 1){
+        first.state = 'disabled';
+    }else first.state = null;
+    res.render('../components/user-app/product/views/productList',{layout: 'userLayout', products:products,categories:categories,page:pageList, first:first, last:last})
 }
 
 exports.detail = async (req, res, next) => {
@@ -71,7 +100,7 @@ exports.search = async function (req, res, next){
 		}
 	}
     let key = req.query.key;
-    let products = await productM.getFull(1, 1000);
+    let products = await productM.getFull();
     let response = [];
     products.forEach(value =>{
         if (value.product_name.toLowerCase().includes(key.toLowerCase())) {
@@ -80,7 +109,34 @@ exports.search = async function (req, res, next){
     response.forEach(value => {
         value.image_link = value['images.image_link']
     });
-    res.render('../components/user-app/product/views/productList',{layout: 'userLayout', products:response, search:true,categories:categories})
+
+
+    let itemsPerPage = 6;
+    let currPage = req.query.page ? req.query.page : 1;
+    let pages;
+    let pageList = [];
+    pages = Math.ceil(response.length / itemsPerPage) == 0 ? 1 : Math.ceil(response.length / itemsPerPage);
+
+    for (let i = 1; i <= pages; i++){
+        pageList.push({num: i});
+    }
+
+    pageList[currPage - 1].active = 1;
+
+    response = response.slice((currPage - 1) * itemsPerPage, currPage * itemsPerPage);
+
+    
+    let first = {}; let last =  {};
+    first.page = 1;
+    last.page = pages;
+    if (currPage == pages){
+        last.state = 'disabled';
+    }
+    if (currPage == 1){
+        first.state = 'disabled';
+    }
+    res.render('../components/user-app/product/views/productSearch',{layout: 'userLayout', products:response,categories:categories,
+page:pageList, first:first, last:last, key:{name:key}});
     // res.json(response)
 }
  
