@@ -30,11 +30,15 @@ module.exports = function(sequelize, DataTypes) {
     review: {
       type: DataTypes.TEXT,
       allowNull: true
+    },
+    created_at: {
+      type: DataTypes.TEXT,
+      allowNull: true
     }
   }, {
     sequelize,
     tableName: 'reviews',
-    timestamps: true,
+    timestamps: false,
     indexes: [
       {
         name: "PRIMARY",
