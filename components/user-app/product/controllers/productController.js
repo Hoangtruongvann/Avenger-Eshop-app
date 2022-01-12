@@ -1,5 +1,5 @@
 const productM = require('../services/products')
-const categoryM = require('../services/category')
+const categoryM = require('../services/category');
 
 
 exports.list = async (req,res,next)=>
@@ -84,3 +84,15 @@ exports.search = async function (req, res, next){
     // res.json(response)
 }
  
+exports.addReivew = async function (req, res, next) {
+    if (req.user)
+    {
+        let date =  "";
+        const d = new Date();
+        date = d.getDate().toString() + '/' + (d.getMonth()+1).toString() + '/' + d.getFullYear().toString()
+        console.log("us",req.body)
+        await productM.addReivew(req.user.user_id, req.params.product_id, req.body, date);
+        exports.detail(req, res, next);
+    }
+    
+}

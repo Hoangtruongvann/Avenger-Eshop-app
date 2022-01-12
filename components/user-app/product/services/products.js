@@ -1,6 +1,6 @@
 const async = require('hbs/lib/async');
 const { models } = require('../../../../models');
-const { Op } = require("sequelize");
+const { Op, INTEGER } = require("sequelize");
 
 exports.getAll = (page = 0, itemPerPage = 6) => {
     return models.products.findAll(
@@ -131,5 +131,15 @@ exports.getReviews = async (id) => {
         },
         raw: true,
         
+    })
+}
+
+exports.addReivew = async (user_id, product_id, data, date) => {
+    await models.reviews.create({
+        user_id: user_id,
+        product_id: product_id,
+        rating: Number(data.rating),
+        review: data.content_review,
+        created_at: date,
     })
 }
