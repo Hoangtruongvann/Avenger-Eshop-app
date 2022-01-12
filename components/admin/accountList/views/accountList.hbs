@@ -77,50 +77,36 @@
                         </div>
 
                         <div class="panel-body">
-                            <div class="alert alert-success">
-                                <div class="DSTK">
-                                    <span class="space">Tên tài khoản: <strong>anhminh0401</strong></span>
-                                    <span>Email: <strong>anhminh0401@abc.com</strong></span>
-                                    <div class="btnDSTK">
-                                        <button>xóa</button>
-                                        <button>khóa</button>
-                                        <button>mở</button>
+                            {{#each account}}
+                                {{#if this.is_blocked}}
+                                    <div class="alert alert-danger">
+                                        <div class="DSTK">
+                                            <span class="space" style="display:block; margin-bottom:10px;">Loại tài khoản: <strong>{{this.user_role}}</strong></span>
+                                            <span style="display:block; margin-bottom:10px;">Email: <strong>{{this.email}}</strong></span>
+                                            <div class="btnDSTK">
+                                                <button data-id="{{user_id}}"  data-toggle="modal" data-target="#delete-form">xóa</button>
+                                                <!-- <button>khóa</button> -->
+                                                <button>mở</button>
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                            </div>
-                            <div class="alert alert-success">
-                                <div class="DSTK">
-                                    <span class="space">Tên tài khoản: <strong>anhminh04</strong></span>
-                                    <span>Email: <strong>abc@abc.com</strong></span>
-                                    <div class="btnDSTK">
-                                        <button>xóa</button>
-                                        <button>khóa</button>
-                                        <button>mở</button>
+                                {{else}}
+                                    <div class="alert alert-success">
+                                        <div class="DSTK">
+                                            <span class="space" style="display:block; margin-bottom:10px;">Loại tài khoản: <strong>{{this.user_role}}</strong></span>
+                                            <span style="display:block; margin-bottom:10px;">Email: <strong>{{this.email}}</strong></span>
+                                            <div class="btnDSTK">
+                                                <button data-id="{{user_id}}"  data-toggle="modal" data-target="#delete-form">xóa</button>
+                                                <button>khóa</button>
+                                                {{!-- <button>mở</button> --}}
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                            </div>
-                            <div class="alert alert-success">
-                                <div class="DSTK">
-                                    <span class="space">Tên tài khoản: <strong>anhminh0404</strong></span>
-                                    <span>Email: <strong>haha@abc.com</strong></span>
-                                    <div class="btnDSTK">
-                                        <button>xóa</button>
-                                        <button>khóa</button>
-                                        <button>mở</button>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="alert alert-danger">
-                                <div class="DSTK">
-                                    <span class="space">Tên tài khoản: <strong>anhminh0403</strong></span>
-                                    <span>Email: <strong>khongco@abc.com</strong></span>
-                                    <div class="btnDSTK">
-                                        <button>xóa</button>
-                                        <!-- <button>khóa</button> -->
-                                        <button>mở</button>
-                                    </div>
-                                </div>
-                            </div>
+                                {{/if}}
+                            {{/each}}
+                            
+                            
+                            
                         </div>
                     </div>
                 </div>
@@ -128,3 +114,42 @@
         </div>
     </div>
 </div>
+
+<div class="modal fade" id = "delete-form" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+        <h5 class="modal-title">Xóa tài khoản</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        </div>
+        <div class="modal-body">
+        <p>Bạn có chắc chắn xóa tài khoản này không? Mọi thông tin về tài khoản này sẽ bị xóa vĩnh viễn trên hệ thống Avengers</p>
+        </div>
+        <div class="modal-footer">
+        <button type="button" class="btn btn-danger" id="delete-confirm">Xóa</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+        </div>
+    </div>
+    </div>
+</div>
+
+<form action="#" method="post" id="deleteForm"></form>
+
+<script>
+    document.addEventListener('DOMContentLoaded', ()=>{
+	$(document).ready(function(){
+
+	  $('#delete-form').on('show.bs.modal', function (event) {
+		var button = $(event.relatedTarget)
+		var _id = button.data('id')
+		$('#deleteForm').attr('action',`/admin/accountList/${_id}`);
+	  })
+
+	  $('#delete-confirm').on('click', ()=>{
+		$('#deleteForm').submit();
+	  })
+
+	})});
+</script>
