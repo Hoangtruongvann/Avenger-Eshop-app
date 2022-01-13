@@ -8,7 +8,7 @@ function initialize(passport) {
         
         const user = await User.findUserByEmail(email);
         if (user == null) {
-            return done(null, false, { message: 'No user with that email' });
+            return done(null, false, { message: 'Thông tin đăng nhập không chính xác' });
         }
 
         if(req.body.remember == 'true'){
@@ -18,10 +18,11 @@ function initialize(passport) {
 
         try {   
             if (await bcrypt.compare(password, user.password)) {
-            // if (password == user.password) {
+                // if (password == user.password) {
+                if(user.is_blocked == 1){return done(null, false, { message: 'Tài khoản này đã bị khóa. Liên hệ admin để biết thêm thông tin'})}
                 return done(null, user);
             } else {
-                return done(null, false, { message: 'Password incorrect' });
+                return done(null, false, { message: 'Thông tin đăng nhập không chính xác' });
             }
         } catch (e) {
             return done(e);

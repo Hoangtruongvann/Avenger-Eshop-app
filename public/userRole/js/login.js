@@ -38,7 +38,7 @@ $('#register-btn').on('click',e=>{
 	e.preventDefault();
 
 	if($('#pass1').val() !== $('#pass2').val()){
-		$('.toast#f1').toast({delay:1100})
+		$('.toast#f1').toast({delay:1500})
 		$('.toast#f1').toast('show')
 	}
 	else{
@@ -46,7 +46,7 @@ $('#register-btn').on('click',e=>{
 	}
 })
 
-$('.toast.instant').toast({delay:1100})
+$('.toast.instant').toast({delay:1500})
 $('.toast.instant').toast('show')
 
 // $('#logout-btn').click(function(e) {

@@ -35,7 +35,7 @@
                     <div class="panel panel-primary">
                         <div class="number">
                             <h3>
-                                <h3>100</h3>
+                                <h3>{{sumary.a}}</h3>
                                 <small>Tổng số tài khoản</small>
                             </h3>
                         </div>
@@ -48,7 +48,7 @@
                     <div class="panel panel-primary">
                         <div class="number">
                             <h3>
-                                <h3>90</h3>
+                                <h3>{{sumary.c}}</h3>
                                 <small>Số tài khoản có thể hoạt động</small>
                             </h3>
                         </div>
@@ -61,7 +61,7 @@
                     <div class="panel panel-primary">
                         <div class="number">
                             <h3>
-                                <h3>10</h3>
+                                <h3>{{sumary.b}}</h3>
                                 <small>Số tài khoản đang bị khóa</small>
                             </h3>
                         </div>
@@ -86,7 +86,7 @@
                                             <div class="btnDSTK">
                                                 <button data-id="{{user_id}}"  data-toggle="modal" data-target="#delete-form">xóa</button>
                                                 <!-- <button>khóa</button> -->
-                                                <button>mở</button>
+                                                <button data-id="{{user_id}}"  data-toggle="modal" data-target="#unlock-form">mở</button>
                                             </div>
                                         </div>
                                     </div>
@@ -97,7 +97,7 @@
                                             <span style="display:block; margin-bottom:10px;">Email: <strong>{{this.email}}</strong></span>
                                             <div class="btnDSTK">
                                                 <button data-id="{{user_id}}"  data-toggle="modal" data-target="#delete-form">xóa</button>
-                                                <button>khóa</button>
+                                                <button data-id="{{user_id}}"  data-toggle="modal" data-target="#lock-form">khóa</button>
                                                 {{!-- <button>mở</button> --}}
                                             </div>
                                         </div>
@@ -108,6 +108,24 @@
                             
                             
                         </div>
+
+                        <ul class="pagination pl-5">
+                                {{#if first}}
+                                <li class="page-item {{first.state}}"><a class="page-link" href="/admin/accountList?page={{first.page}}">First</a></li>
+                                {{/if}}
+
+                                {{#each page}}
+                                {{#if this.active}}
+                                <li class="page-item active"><a class="page-link px-4" href="/admin/accountList?page={{this.num}}">{{this.num}}</a></li>
+                                {{else}}
+                                <li class="page-item"><a class="page-link px-3" href="/admin/accountList?page={{this.num}}">{{this.num}}</a></li>
+                                {{/if}}
+                                {{/each}}
+
+                                {{#if last}}
+                                <li class="page-item {{last.state}}"><a class="page-link" href="/admin/accountList?page={{last.page}}">Last</a></li>
+                                {{/if}}
+                            </ul>
                     </div>
                 </div>
             </div>
@@ -125,7 +143,7 @@
         </button>
         </div>
         <div class="modal-body">
-        <p>Bạn có chắc chắn xóa tài khoản này không? Mọi thông tin về tài khoản này sẽ bị xóa vĩnh viễn trên hệ thống Avengers</p>
+        <p>Bạn có chắc chắn <b>xóa</b> tài khoản này không? Mọi thông tin về tài khoản này sẽ bị xóa vĩnh viễn trên hệ thống Avengers</p>
         </div>
         <div class="modal-footer">
         <button type="button" class="btn btn-danger" id="delete-confirm">Xóa</button>
@@ -134,8 +152,48 @@
     </div>
     </div>
 </div>
+<div class="modal fade" id = "unlock-form" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+        <h5 class="modal-title">Xóa tài khoản</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        </div>
+        <div class="modal-body">
+        <p>Bạn có chắc chắn <b>mở khóa</b> tài khoản này không? Tài khoản này sẽ được hoạt động trở lại trên hệ thống Avengers</p>
+        </div>
+        <div class="modal-footer">
+        <button type="button" class="btn btn-success" id="unlock-confirm">Mở khóa</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+        </div>
+    </div>
+    </div>
+</div>
+<div class="modal fade" id = "lock-form" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+        <h5 class="modal-title">Khóa tài khoản</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        </div>
+        <div class="modal-body">
+        <p>Bạn có chắc chắn muốn <b>khóa</b> tài khoản này không? Mọi hoạt động của tài khoản này sẽ bị chặn trên hệ thống Avengers</p>
+        </div>
+        <div class="modal-footer">
+        <button type="button" class="btn btn-danger" id="lock-confirm">Khóa</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+        </div>
+    </div>
+    </div>
+</div>
 
 <form action="#" method="post" id="deleteForm"></form>
+<form action="#" method="post" id="lockForm"></form>
+<form action="#" method="post" id="unlockForm"></form>
 
 <script>
     document.addEventListener('DOMContentLoaded', ()=>{
@@ -144,11 +202,33 @@
 	  $('#delete-form').on('show.bs.modal', function (event) {
 		var button = $(event.relatedTarget)
 		var _id = button.data('id')
-		$('#deleteForm').attr('action',`/admin/accountList/${_id}`);
+		$('#deleteForm').attr('action',`/admin/accountList/delete/${_id}`);
 	  })
 
 	  $('#delete-confirm').on('click', ()=>{
 		$('#deleteForm').submit();
+	  })
+
+      //lock
+	  $('#lock-form').on('show.bs.modal', function (event) {
+		var button = $(event.relatedTarget)
+		var _id = button.data('id')
+		$('#lockForm').attr('action',`/admin/accountList/lock/${_id}`);
+	  })
+
+	  $('#lock-confirm').on('click', ()=>{
+		$('#lockForm').submit();
+	  })
+
+      //unlock
+	  $('#unlock-form').on('show.bs.modal', function (event) {
+		var button = $(event.relatedTarget)
+		var _id = button.data('id')
+		$('#unlockForm').attr('action',`/admin/accountList/unlock/${_id}`);
+	  })
+
+	  $('#unlock-confirm').on('click', ()=>{
+		$('#unlockForm').submit();
 	  })
 
 	})});

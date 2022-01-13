@@ -40,6 +40,13 @@ exports.remove = async(id) => {
         return null;
     }
 }
+exports.update = async(user_id, lockState) => {
+    return models.users.update({ is_blocked: lockState }, {
+        where: {
+            user_id: user_id,
+        }
+    })
+}
 exports.findUserByEmail = (email) =>
 {
     return models.users.findOne({
