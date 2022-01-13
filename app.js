@@ -96,6 +96,7 @@ app.use(passport.session());
 //middleware
 const authenRole = require('./middleware/detectRole')
 const authenAccount = require('./middleware/authen')
+const oldShop = require('./middleware/isOldShop')
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -116,10 +117,10 @@ app.use('/', indexRouter);
 app.use('/', authRouter);
 app.use('/products', productRouter);
 app.use('/cart', cartRouter);
-app.use('/seller/orders', orderRouter);
-app.use('/seller', authenAccount.isLoggedIn, authenRole.isSeller, dashboardRouter);
+app.use('/seller/orders',oldShop.isOld, orderRouter);
 app.use('/seller/account', authenAccount.isLoggedIn, authenRole.isSeller, sellerAccountRouter);
-app.use('/seller/products', authenAccount.isLoggedIn, authenRole.isSeller, productAccountRouter);
+app.use('/seller', authenAccount.isLoggedIn, authenRole.isSeller, oldShop.isOld,dashboardRouter);
+app.use('/seller/products', authenAccount.isLoggedIn, authenRole.isSeller,oldShop.isOld, productAccountRouter);
 app.use('/admin', authenAccount.isLoggedIn, authenRole.isAdmin, adminRouter);
 app.use('/admin/accountList', authenAccount.isLoggedIn, authenRole.isAdmin, accountListRouter);
 // catch 404 and forward to error handler

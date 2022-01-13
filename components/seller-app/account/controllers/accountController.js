@@ -57,3 +57,20 @@ exports.update = async (req, res, next) => {
     }
 
 }
+
+exports.init = (req, res, next)=>{
+    res.render('../components/seller-app/account/views/init', {layout:'sellerLayout'})
+}
+
+exports.initP = async (req, res, next)=>{
+
+    let newShop = await accountService.createShop(req.body)
+    newShop = newShop.dataValues;
+    let newUser = req.user
+    newUser.user_shop = newShop.shop_id;
+    await accountService.updateUser(newUser, newUser.user_id)
+
+
+
+    res.redirect('/')
+}

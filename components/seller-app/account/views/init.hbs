@@ -1,0 +1,139 @@
+
+<div class="header pb-6 d-flex align-items-center" style="min-height: 500px; background-image: url({{user.avatar}}); background-size: cover; background-position: center top;">
+      <!-- Mask -->
+      <span class="mask bg-gradient-default opacity-8"></span>
+      <!-- Header container -->
+      <div class="container-fluid d-flex align-items-center">
+        <div class="row">
+          <div class="col-lg-7 col-md-10">
+            <h1 class="display-2 text-white">{{user.lastname}} {{user.firstname}}</h1>
+            <p class="text-white mt-0 mb-5">Đây là trang hồ sơ của bạn. Bạn có thể xem thông tin của bạn và thông tin cửa hàng của mình và thay đổi các thông tin cá nhân.</p>
+      
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Page content -->
+    <div class="container-fluid mt--6">
+      <div class="row">
+        <div class="col-xl-4 order-xl-2">
+          <div class="card card-profile">
+            <img src="{{user.avatar}}" alt="Image placeholder" class="card-img-top">
+            <div class="row justify-content-center">
+              <div class="col-lg-3 order-lg-2">
+                <div class="card-profile-image">
+                  <a href="#">
+                    <img src="{{user.avatar}}" class="rounded-circle">
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4">
+              <div class="d-flex justify-content-between">
+              </div>
+            </div>
+            <div class="card-body pt-0">
+              <div class="row">
+                <div class="col">
+                  <div class="card-profile-stats d-flex justify-content-center">
+                    <div>
+                      {{!-- <span class="heading">{{countProduct}}</span> --}}
+                      <h3>{{user.firstname}}</h3>
+                    </div>
+                    {{!-- <div>
+                      <span class="heading">{{countOrder}}</span>
+                      <span class="description">Lượt mua</span>
+                    </div>
+                    <div>
+                      <span class="heading">{{countReview}}</span>
+                      <span class="description">Đánh giá</span>
+                    </div> --}}
+                  </div>
+                </div>
+              </div>
+              {{!-- <div class="text-center">
+                <h5 class="h3">
+                  <span class="font-weight-light"></span>
+                </h5>
+                <div class="h5 font-weight-300">
+                  <i class="ni location_pin mr-2"></i>
+                </div>
+                <div class="h5 mt-4">
+                  <i class="ni business_briefcase-24 mr-2"></i>
+                </div>
+                <div>
+                  <i class="ni education_hat mr-2"></i>
+                </div>
+              </div> --}}
+            </div>
+          </div>
+        </div>
+
+        <div class="col-xl-8 order-xl-1">
+          <div class="card">
+            <div class="card-header">
+              <div class="row align-items-center">
+                <div class="col-8">
+                  <h3 class="mb-0">Cập nhật thông tin </h3>
+                </div>
+                
+              </div>
+            </div>
+            <div class="card-body">
+              <form  class ="edit-form" id="edit-profile" method ="POST" action = "/seller/account/initShop">
+
+                <!-- Shop -->
+                <h4 style="color:blue"  >Thông tin cửa hàng</h4>
+                <div class="pl-lg-4">
+                  <div class="row">
+                    <div class="col-lg-12">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-username">Tên cửa hàng</label>
+                        <input required type="text" id="input-shop-name" name="shop_name" class="form-control" placeholder="Tên cửa hàng"  maxlength="50">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-username">Số điện thoại</label>
+                        <input required type="text" id="input-shop-phone" name="shop_phone" class="form-control" placeholder="Tên cửa hàng"  maxlength="11">
+                      </div>
+                    </div>
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-username">Email</label>
+                        <input required type="email" id="input-shop-email" name = "shop_email" class="form-control" placeholder="Tên cửa hàng"  maxlength="50">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-12">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-first-name">Địa chỉ</label>
+                        <input required type="text" id="input-shop-address" name = "address"class="form-control" placeholder="Địa chỉ cửa hàng"  maxlength="65000">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- Description -->
+                <h4 >Mô tả</h4>
+                <div class="pl-lg-4">
+                  <div class="form-group">
+                    <label class="form-control-label">Mô tả cửa hàng</label>
+                    <textarea rows="4" class="form-control" name = "descriptions" placeholder="Vài mô tả cho cửa hàng của bạn ..." form_id ="edit-profile"></textarea>
+                  </div>
+                </div>
+            
+               <span "text-right" style = "float: right;">
+                                <button class="btn btn-sm btn-primary" type="submit" value="submit"
+                                    style="font-size: 18px;"  form="edit-profile">Xác nhận</button>
+                            </span>
+
+              </span>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+   
