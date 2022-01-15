@@ -69,7 +69,7 @@ exports.detail = async (req, res, next) => {
     let user = req.user;
     let reviews = await productM.getReviews(req.params.product_id);
     reviews.reverse();
-    res.render('../components/user-app/product/views/productDetail', { layout: 'userLayout', product: product, images: images, shop: shop, relatedProducts, user, reviews })
+    res.render('../components/user-app/product/views/productDetail', { layout: 'userLayout', product: product, images: images, shop: shop, relatedProducts, user, reviews, totalReview: reviews.length })
 }
 
 exports.fetching = async function (req, res, next) {
