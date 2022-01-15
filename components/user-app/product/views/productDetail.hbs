@@ -115,7 +115,7 @@
                             </div>
                         </div>
                         <div class="tab-pane" id="tabs-3" role="tabpanel">
-                            <form method="post">
+                            <form id="form-review" method="post">
                                 <div class="product__details__tab__desc">
                                     <h6>Nhận xét</h6>
                                     <div style="display: flex;">
@@ -138,18 +138,27 @@
                                     </div>
 
                                     <div class="review">
+                                        {{#if user}}
+                                        <input type="hidden" id="check-user" value="1">
+                                        {{else}}
+                                        <input type="hidden" id="check-user" value="0">
+                                        {{/if}}
+
                                         {{#with user}}
                                         <img src={{avatar}} alt="avatar" class="avatar-review">
                                         <span> {{firstname}} {{lastname}}</span>
                                         {{/with}}
                                         <div class="row">
                                             <div class="col-7 input-review">
-                                                <input type="text" placeholder="nhận xét" style="width: 100%" name="content_review">
+                                                <input type="text" placeholder="nhận xét" style="width: 100%"
+                                                    name="content_review">
                                             </div>
                                             <div class="col-5">
-                                                <button type="submit" class="btn-submit-review">Gửi</button>
+                                                <button type="button" class="btn-submit-review"
+                                                    onclick="errorMessage()">Gửi</button>
                                             </div>
                                         </div>
+                                        <div id="error" class="error-reivew"></div>
                                     </div>
                                     <h6>Danh sách nhận xét</h6>
                                     {{#each reviews}}
@@ -254,4 +263,5 @@
         </div>
     </div>
 </section>
+<script src="/userRole/js/review.js"></script>
 <!-- Related Product Section End -->
