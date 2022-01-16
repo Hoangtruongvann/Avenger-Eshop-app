@@ -28,7 +28,7 @@ const accountListRouter = require('./components/admin/accountList/routes/account
 const app = express();
 // add helper
 var hbs = exphbs.create({});
-hbs.handlebars.registerHelper('ifCond', function (v1, operator, v2, options) {
+hbs.handlebars.registerHelper('ifCond', function(v1, operator, v2, options) {
 
     switch (operator) {
         case '==':
@@ -54,24 +54,24 @@ hbs.handlebars.registerHelper('ifCond', function (v1, operator, v2, options) {
         default:
             return options.inverse(this);
     }
-  });
-  
+});
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.engine('hbs', exphbs.engine({
-	extname: 'hbs',
-	defaultLayout: 'userLayout',
-	helpers: {
-		'pages': function(pages,page,search_name,block) {
-			var accum = '';
-			for(var i = 1; i < pages+1; ++i)
-			if(i!=page+1)
-				accum += block.fn({index:i,search_name:search_name,active:""});
-			else
-				accum += block.fn({index:i,search_name:search_name,active:"active"});
-			return accum;
-		},
-	}
+    extname: 'hbs',
+    defaultLayout: 'userLayout',
+    helpers: {
+        'pages': function(pages, page, search_name, block) {
+            var accum = '';
+            for (var i = 1; i < pages + 1; ++i)
+                if (i != page + 1)
+                    accum += block.fn({ index: i, search_name: search_name, active: "" });
+                else
+                    accum += block.fn({ index: i, search_name: search_name, active: "active" });
+            return accum;
+        },
+    }
 }));
 app.set('view engine', 'hbs');
 app.use(flash());
@@ -104,23 +104,23 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+
 app.use(async function(req, res, next) {
     res.locals.user = req.user;
-    if (req?.user?.user_id) {
+    if (req ? .user ? .user_id) {
         [res.locals.cartQuantity] = await require('./components/user-app/cart/services/cartDetail').count(req.user.user_id);
 
     }
     next();
 });
-
 app.use('/', indexRouter);
 app.use('/', authRouter);
 app.use('/products', productRouter);
 app.use('/cart', cartRouter);
-app.use('/seller/orders',oldShop.isOld, orderRouter);
+app.use('/seller/orders', oldShop.isOld, orderRouter);
 app.use('/seller/account', authenAccount.isLoggedIn, authenRole.isSeller, sellerAccountRouter);
-app.use('/seller', authenAccount.isLoggedIn, authenRole.isSeller, oldShop.isOld,dashboardRouter);
-app.use('/seller/products', authenAccount.isLoggedIn, authenRole.isSeller,oldShop.isOld, productAccountRouter);
+app.use('/seller', authenAccount.isLoggedIn, authenRole.isSeller, oldShop.isOld, dashboardRouter);
+app.use('/seller/products', authenAccount.isLoggedIn, authenRole.isSeller, oldShop.isOld, productAccountRouter);
 app.use('/admin', authenAccount.isLoggedIn, authenRole.isAdmin, adminRouter);
 app.use('/admin/accountList', authenAccount.isLoggedIn, authenRole.isAdmin, accountListRouter);
 // catch 404 and forward to error handler
