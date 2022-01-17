@@ -107,7 +107,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(async function(req, res, next) {
     res.locals.user = req.user;
-    if (req ? .user ? .user_id) {
+    if (req?.user?.user_id) {
         [res.locals.cartQuantity] = await require('./components/user-app/cart/services/cartDetail').count(req.user.user_id);
 
     }
