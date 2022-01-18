@@ -27,11 +27,17 @@
                             <div class="col-lg-6">
                                 <div class="form-group">
                                     <label for="category" class="category">Trạng thái</label>
+                                    {{#ifCond order_status '==' 'Đang giao' }}
                                     <select name="status" id="status">
-                                        
                                         <option value="Đang giao" selected>Đang giao</option>
                                         <option value="Đã hoàn thành">Đã hoàn thành</option>
                                     </select>
+                                    {{/ifCond}}
+                                    {{#ifCond order_status '==' 'Đã hoàn thành'}}
+                                    <input type="text" id="status" name="status" class="form-control"
+                                        placeholder="{{order_status}}" value="{{order_status}}" required=""
+                                        readonly>
+                                    {{/ifCond}}
                                  
                                 </div>
                             </div>

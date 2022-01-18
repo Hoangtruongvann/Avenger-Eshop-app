@@ -46,13 +46,12 @@ exports.add = async(req, res, next) => {
     }
 
     let cart = await cartM.getOneBydoubleId(req.user.user_id, req.query.id)
-    if (cart.length != 0){
+    if (cart.length != 0) {
         cart = cart[0];
         cart.quantity++;
         result = await cartM.addToCart(cart);
 
-    }
-    else{
+    } else {
         cart = {};
         cart.user_id = req.user.user_id;
         cart.product_id = req.query.id;
@@ -63,7 +62,7 @@ exports.add = async(req, res, next) => {
     // let result =null;
     if (result) {
         res.json({ result: 'ok' })
- 
+
     } else {
         res.json({ result: 'already exist' })
     }
