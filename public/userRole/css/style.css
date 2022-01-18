@@ -668,11 +668,11 @@ ol {
 }
 .search_result2{
 	position: absolute;
-	left: 0px;
+	left: 15px;
 	top: 50px;
 	cursor: pointer;
 	background-color:white;
-	width:654px;
+	width:438px;
 	z-index: 10;
 }
 
