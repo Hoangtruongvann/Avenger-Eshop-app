@@ -23,7 +23,7 @@ exports.listProduct = async (req, res, next) => {
         console.log(req.query.key);
         const products = await productServices.getAll(page, itemPerPage, id, search_name);
         const pages = Math.ceil(products.count / itemPerPage);
-        res.render('../components/seller-app/products/views/productList', { layout: 'sellerLayout.hbs', products: products.rows, pages, search_name, page, next: page < pages - 1 ? page + 2 : pages, prev: page >= 1 ? page : 1 });
+        res.render('../components/seller-app/products/views/productList', { layout: 'sellerLayout.hbs', products: products.rows, pages, search_name, page, next: page < pages - 1 ? page + 2 : 0, prev: page >= 1 ? page : 0 });
     }
     catch (error) {
         next(error);
