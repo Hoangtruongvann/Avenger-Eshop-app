@@ -3,10 +3,11 @@ const categoryM = require('../services/category');
 
 
 exports.list = async (req, res, next) => {
+
+    // 1 trang co 6 thang
     let itemsPerPage = 6;
+    // trang hien tai
     let currPage = req.query.page ? req.query.page : 1;
-
-
     let categories = await categoryM.getAll();
     for (let i in categories) {
         categories[i] = categories[i].dataValues
@@ -34,15 +35,20 @@ exports.list = async (req, res, next) => {
     for (let i = 1; i <= pages; i++) {
         pageList.push({ num: i });
     }
-
+    // trang hien tai se duoc hien ra
     pageList[currPage - 1].active = 1;
 
+    // lay cac itemsPerpage products cho moi trang
     products = products.slice((currPage - 1) * itemsPerPage, currPage * itemsPerPage);
+
 
 
     let first = {}; let last = {};
     first.page = 1;
     last.page = pages;
+
+    // disable chi trang hien tai dang o 
+
     if (currPage == pages) {
         last.state = 'disabled';
     } else last.state = null;
