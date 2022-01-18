@@ -21,6 +21,7 @@ exports.signup = async(req, res, next) => {
         return res.render('../components/user-app/authen/views/signup', {layout:'userLayout', toast:toast})
     }
     req.body.password = await bcrypt.hash(req.body.password, 10);
+    req.body.avatar = 'https://codenepal.dev/assets/images/default-avatar-rectangle.jpg?v=e4b91e3e3a&fbclid=IwAR1w3q_L6nClGtk9_2a1utLcENO2isRonCpq1zC7NiA5kMUUfOqwjtIy0-g'
     const response = await userM.addUser(req.body);
     res.redirect('/login')
 }
