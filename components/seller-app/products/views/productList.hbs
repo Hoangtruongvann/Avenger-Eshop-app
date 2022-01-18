@@ -111,25 +111,25 @@
                     {{#if search_name}}
                     <div>
                         <ul class="pagination modal-1" style="margin-left:45%">
-                            <li><a href="/seller/products?key={{search_name}}&page={{prev}}" class="prev">&laquo;</a></li>
+                            <li><a {{#if prev}}href="/seller/products?key={{search_name}}&page={{prev}}" class="prev"{{/if}}>&laquo;</a></li>
                             {{#pages pages page search_name }}
 
                             <li ><a href="/seller/products?key={{search_name}}&page={{index}}" class ="{{active}}">{{index}}</a></li>
                             {{/pages}}
 
-                            <li class ="{{active}}"><a href="/seller/products?key={{search_name}}&page={{next}}" class="next">&raquo;</a></li>
+                            <li class ="{{active}}"><a {{#if next}}href="/seller/products?key={{search_name}}&page={{next}}"{{/if}} class="next">&raquo;</a></li>
                         </ul>
                     </div>
                     {{else}}
                     <div>
                         <ul class="pagination modal-1" style="margin-left:45%">
-                            <li><a href="/seller/products?page={{prev}}" class="prev">&laquo;</a></li>
+                            <li><a {{#if prev}}href="/seller/products?page={{prev}}"{{/if}} class="prev">&laquo;</a></li>
                             {{#pages pages page search_name }}
 
                             <li ><a href="/seller/products?page={{index}}" class ="{{active}}">{{index}}</a></li>
                             {{/pages}}
 
-                            <li class ="{{active}}"><a href="/seller/products?page={{next}}" class="next">&raquo;</a></li>
+                            <li class ="{{active}}"><a{{#if next}} href="/seller/products?page={{next}}" class="next"{{/if}}>&raquo;</a></li>
                         </ul>
                     </div>
                     {{/if}}
