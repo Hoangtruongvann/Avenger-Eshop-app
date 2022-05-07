@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <!-- 
 Template Name: BRILLIANT Bootstrap Admin Template
 Version: 4.5.6
@@ -7,7 +6,7 @@ Website: http://www.webthemez.com/
 -->
 <html xmlns="http://www.w3.org/1999/xhtml">
 
-<head>
+  <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta content="" name="description" />
@@ -18,107 +17,135 @@ Website: http://www.webthemez.com/
     <!-- FontAwesome Styles-->
     <link href="/admin/css/font-awesome.css" rel="stylesheet" />
     <!-- Morris Chart Styles-->
-    {{!-- <link href="/admin/js/morris/morris-0.4.3.min.css" rel="stylesheet" /> --}}
+    {{! <link href="/admin/js/morris/morris-0.4.3.min.css" rel="stylesheet" /> }}
     <!-- Custom Styles-->
     <link href="/admin/css/custom-styles.css" rel="stylesheet" />
     <!-- Google Fonts-->
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
-    {{!-- <link rel="stylesheet" href="/admin/js/Lightweight-Chart/cssCharts.css"> --}}
-</head>
+    <link
+      href="http://fonts.googleapis.com/css?family=Open+Sans"
+      rel="stylesheet"
+      type="text/css"
+    />
+    {{! <link rel="stylesheet" href="/admin/js/Lightweight-Chart/cssCharts.css"> }}
+  </head>
 
-<body>
+  <body>
+
     <div id="wrapper">
-        <nav class="navbar navbar-default top-navbar" role="navigation">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="/"><strong><i class="icon fa fa-shopping-cart"></i>
-                        YourPhone</strong></a>
+      <nav class="navbar navbar-default top-navbar" role="navigation">
+        <div class="navbar-header">
+          <button
+            type="button"
+            class="navbar-toggle"
+            data-toggle="collapse"
+            data-target=".sidebar-collapse"
+          >
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/"><strong><i
+                class="icon fa fa-shopping-cart"
+              ></i>
+              YourPhone</strong></a>
 
-                <div id="sideNav" href="">
-                    <i class="fa fa-bars icon"></i>
-                </div>
-            </div>
+          <div id="sideNav" href="">
+            <i class="fa fa-bars icon"></i>
+          </div>
+        </div>
 
-            <ul class="nav navbar-top-links navbar-right">
-                <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false">
-                        <i class="fa fa-envelope fa-fw"></i> <i class="fa fa-caret-down"></i>
-                    </a>
-                    <ul class="dropdown-menu dropdown-messages">
-                        <li>
-                            <a href="#">
-                                <div>
-                                    <strong>Anh Minh</strong>
-                                    <span class="pull-right text-muted">
-                                        <em>Hôm nay</em>
-                                    </span>
-                                </div>
-                                <div>Xin chào mặt hàng của tôi đã thất lạc</div>
-                            </a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a href="#">
-                                <div>
-                                    <strong>Minh Anh</strong>
-                                    <span class="pull-right text-muted">
-                                        <em>Hôm qua</em>
-                                    </span>
-                                </div>
-                                <div>Tôi chưa nhận được hàng</div>
-                            </a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a href="#">
-                                <div>
-                                    <strong>Văn Lợi</strong>
-                                    <span class="pull-right text-muted">
-                                        <em>Hôm qua</em>
-                                    </span>
-                                </div>
-                                <div>Hàng nhận được không giống với tôi yêu cầu</div>
-                            </a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a class="text-center" href="#">
-                                <strong>Xem toàn bộ</strong>
-                                <i class="fa fa-angle-right"></i>
-                            </a>
-                        </li>
-                    </ul>
-                    <!-- /.dropdown-messages -->
-                </li>
-                <!-- /.dropdown -->
-
-                <!-- /.dropdown -->
-                <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false">
-                        <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
-                    </a>
-                    <ul class="dropdown-menu dropdown-user">
-                        <li><a href="#"><i class="fa fa-user fa-fw"></i> Thông tin cá nhân</a>
-                        </li>
-                        <li><a href="#"><i class="fa fa-gear fa-fw"></i> Cài đặt</a>
-                        </li>
-                        <li class="divider"></li>
-                        <li><a id="logout-btn" href="#"><i class="fa fa-sign-out fa-fw"></i> Đăng xuất</a>
-                        </li>
-                    </ul>
-                    <!-- /.dropdown-user -->
-                </li>
-                <!-- /.dropdown -->
+        <ul class="nav navbar-top-links navbar-right">
+          <li class="dropdown">
+            <a
+              class="dropdown-toggle"
+              data-toggle="dropdown"
+              href="#"
+              aria-expanded="false"
+            >
+              <i class="fa fa-envelope fa-fw"></i>
+              <i class="fa fa-caret-down"></i>
+            </a>
+            <ul class="dropdown-menu dropdown-messages">
+              <li>
+                <a href="#">
+                  <div>
+                    <strong>Anh Minh</strong>
+                    <span class="pull-right text-muted">
+                      <em>Hôm nay</em>
+                    </span>
+                  </div>
+                  <div>Xin chào mặt hàng của tôi đã thất lạc</div>
+                </a>
+              </li>
+              <li class="divider"></li>
+              <li>
+                <a href="#">
+                  <div>
+                    <strong>Minh Anh</strong>
+                    <span class="pull-right text-muted">
+                      <em>Hôm qua</em>
+                    </span>
+                  </div>
+                  <div>Tôi chưa nhận được hàng</div>
+                </a>
+              </li>
+              <li class="divider"></li>
+              <li>
+                <a href="#">
+                  <div>
+                    <strong>Văn Lợi</strong>
+                    <span class="pull-right text-muted">
+                      <em>Hôm qua</em>
+                    </span>
+                  </div>
+                  <div>Hàng nhận được không giống với tôi yêu cầu</div>
+                </a>
+              </li>
+              <li class="divider"></li>
+              <li>
+                <a class="text-center" href="#">
+                  <strong>Xem toàn bộ</strong>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+              </li>
             </ul>
-        </nav>
-        <!--/. NAV TOP  -->
+            <!-- /.dropdown-messages -->
+          </li>
+          <!-- /.dropdown -->
 
-        {{{body}}}
+          <!-- /.dropdown -->
+          <li class="dropdown">
+            <a
+              class="dropdown-toggle"
+              data-toggle="dropdown"
+              href="#"
+              aria-expanded="false"
+            >
+              <i class="fa fa-user fa-fw"></i>
+              <i class="fa fa-caret-down"></i>
+            </a>
+            <ul class="dropdown-menu dropdown-user">
+              <li><a href="#"><i class="fa fa-user fa-fw"></i>
+                  Thông tin cá nhân</a>
+              </li>
+              <li><a href="#"><i class="fa fa-gear fa-fw"></i> Cài đặt</a>
+              </li>
+              <li class="divider"></li>
+              <li><a id="logout-btn" href="#"><i
+                    class="fa fa-sign-out fa-fw"
+                  ></i>
+                  Đăng xuất</a>
+              </li>
+            </ul>
+            <!-- /.dropdown-user -->
+          </li>
+          <!-- /.dropdown -->
+        </ul>
+      </nav>
+      <!--/. NAV TOP  -->
+
+      {{{body}}}
 
     </div>
     <form action="/logout?_method=DELETE" method="post" id="logout-form"></form>
@@ -133,23 +160,26 @@ Website: http://www.webthemez.com/
     <!-- Metis Menu Js -->
     <script src="/admin/js/jquery.metisMenu.js"></script>
     <!-- Morris Chart Js -->
-    {{!-- <script src="/admin/js/morris/raphael-2.1.0.min.js"></script>
-    <script src="/admin/js/morris/morris.js"></script> --}}
+    {{! <script src="/admin/js/morris/raphael-2.1.0.min.js"></script>
+    <script src="/admin/js/morris/morris.js"></script> }}
 
-
-    {{!-- <script src="/admin/js/easypiechart.js"></script>
+    {{! <script src="/admin/js/easypiechart.js"></script>
     <script src="/admin/js/easypiechart-data.js"></script>
 
-    <script src="/admin/js/Lightweight-Chart/jquery.chart.js"></script> --}}
+    <script src="/admin/js/Lightweight-Chart/jquery.chart.js"></script> }}
 
     <!-- Custom Js -->
-    {{!-- <script src="/admin/js/custom-scripts.js"></script> --}}
-
+    {{! <script src="/admin/js/custom-scripts.js"></script> }}
 
     <!-- Chart Js -->
-    {{!-- <script type="text/javascript" src="/admin/js/Chart.min.js"></script>
-    <script type="text/javascript" src="/admin/js/chartjs.js"></script> --}}
+    {{! <script type="text/javascript" src="/admin/js/Chart.min.js"></script>
+    <script type="text/javascript" src="/admin/js/chartjs.js"></script> }}
     <script src="/admin/js/login.js"></script>
-</body>
+    <script
+      async
+      src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3663656374127246"
+      crossorigin="anonymous"
+    ></script>
+  </body>
 
 </html>
